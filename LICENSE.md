@@ -1,3 +1,6 @@
-Copyright © 2013 Olaround. All Rights Reserved.
+### Olaround Shared Source License
+------------------------------------
 
-You may not use any part of this code in any commercial or non-commercial project other than the Olaround Platform.
+_Copyright © 2013 [Olaround](http://olaround.me)™. All Rights Reserved._
+
+THE CONTENTS THIS WORK ARE A PART OF A PROJECT ("OLAROUND"), AND ARE SHARED "AS-IS". YOU MAY NOT REUSE THIS CODE IN ANY OTHER PROJECT, OR CREATE DERIVATIVES OF THIS WORK FOR USE IN ANY OTHER PROJECT. THE COMPANY "OLAROUND" AND "BRAMERZ" RETAINS ALL RIGHTS TO THIS CODE.
