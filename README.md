@@ -11,4 +11,4 @@ License
 
 Copyright © 2013 [Olaround™](http://olaround.me). All Rights Reserved.
 
-See [License.md](https://github.com/olaround/web-uploads/master/LICENSE.md) for further details.
+See [License.md](https://github.com/olaround/web-uploads/blob/master/LICENSE.md) for further details.
