@@ -37,7 +37,8 @@
 		"azure" : "0.7.x",
 		"mysql" : "2.0.x",
 		"colors" : "0.6.x",
-		"winston" : "0.7.x"
+		"winston" : "0.7.x",
+		"express-winston" : "0.2.x"
 	},
 	"readmeFilename": "README.md"
 }
