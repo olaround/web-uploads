@@ -1,44 +1,46 @@
 {
-	"name" : "olrd-uploads",
-	"description" : "A simple uploads server based on Node.js to handle all the Olaround related Uploads and Real-time Facebook Requests.",
-	"version" : "0.1.0",
-	"engine" : "node >= 0.10.x",
-	"author" : {
-		"name" : "Uzair Sajid",
-		"email" : "uzair@uzeeinc.net"
-	},
-	"keywords": [
-		"uploads",
-		"olaround",
-		"azure",
-		"olrd",
-		"facebook",
-		"realtime",
-		"api"
-	],
-	"bugs": {
-		"url": "https://github.com/olaround/web-uploads/issues"
-	},
-	"licenses": [
-		{
-			"type": "Olaround Shared Source",
-			"url": "https://github.com/olaround/web-uploads/blob/master/LICENSE.md"
-		}
-	],
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/olaround/web-uploads.git"
-	},
-	"scripts" : {
-		"start" : "node app.js"
-	},
-	"dependencies" : {
-		"express" : "3.3.x",
-		"azure" : "0.7.x",
-		"mysql" : "2.0.x",
-		"colors" : "0.6.x",
-		"winston" : "0.7.x",
-		"express-winston" : "0.2.x"
-	},
-	"readmeFilename": "README.md"
+  "name": "olrd-uploads",
+  "description": "A simple uploads server based on Node.js to handle all the Olaround related Uploads and Real-time Facebook Requests.",
+  "version": "0.1.0",
+  "engine": "node >= 0.10.x",
+  "author": {
+    "name": "Uzair Sajid",
+    "email": "uzair@uzeeinc.net"
+  },
+  "keywords": [
+    "uploads",
+    "olaround",
+    "azure",
+    "olrd",
+    "facebook",
+    "realtime",
+    "api"
+  ],
+  "bugs": {
+    "url": "https://github.com/olaround/web-uploads/issues"
+  },
+  "licenses": [
+    {
+      "type": "Olaround Shared Source",
+      "url": "https://github.com/olaround/web-uploads/blob/master/LICENSE.md"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/olaround/web-uploads.git"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.3.x",
+    "azure": "0.7.x",
+    "mysql": "2.0.x",
+    "request":"2.27.x",
+    "colors": "0.6.x",
+    "winston": "0.7.x",
+    "express-winston": "0.2.x",
+    "orm": "2.1.x"
+  },
+  "readmeFilename": "README.md"
 }
