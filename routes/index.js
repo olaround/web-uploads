@@ -76,8 +76,6 @@ var handleUpload = function(req, res, callback) {
 				winston.error(err);
 			}
 
-			console.log(typeof body);
-
 			console.log(util.inspect(result));
 			console.log(util.inspect(body));
 			
@@ -121,33 +119,68 @@ var handleUpload = function(req, res, callback) {
 
 					console.log(util.inspect(messageData), {colors: true});
 
+					opts.uri = "https://api.olaround.me/v2/pictures/" + req.uploadTarget.entity;
+					opts.form = {
+
+						gallery_id: messageData.galleryId,
+						container_name: messageData.containerName,
+						original_image: messageData.originalImage,
+						cdn_url: buildAzureSourceUrl(''),
+						update_object: true,
+						object_id: req.params.user
+					};
 					
+					request.post(opts, function(err, updateResult, updateBody) {
 
-					var sbService = azure.createServiceBusService();
-					sbService.sendTopicMessage(
+						updateBody = JSON.parse(updateBody);
 
-						'olrd-picsys',
-						{
-							body: JSON.stringify(messageData),
-							customProperties: {
-								entity: req.uploadTarget.entity
-							}
-						},
-						function(err, result) {
+						if (err || updateResult.statusCode != 200 || typeof updateBody.update_object != true) {
+
+							winston.err("Something went wrong while trying to add the picture record for %s", req.uploadTarget.entity);
 
 							if (err) {
-
-								winston.error("Couldn't send message for uploaded picture.");
 								winston.error(err);
-								callback(err);
-
-							} else {
-
-								winston.log("Message sent for an uploaded picture.");
-								callback(null, messageData);
 							}
+
+							console.log(util.inspect(updateResult));
+							console.log(util.inspect(updateBody));
+							
+							res.type('application/json');
+							res.send(updateResult.statusCode, updateBody);
+							return new Error(updateBody);
+
+						} else {
+
+							messageData.pictureId = updateBody.id;
+
+							var sbService = azure.createServiceBusService();
+							sbService.sendTopicMessage(
+
+								'olrd-picsys',
+								{
+									body: JSON.stringify(messageData),
+									customProperties: {
+										entity: req.uploadTarget.entity
+									}
+								},
+								function(err, result) {
+
+									if (err) {
+
+										winston.error("Couldn't send message for uploaded picture.");
+										winston.error(err);
+										callback(err);
+
+									} else {
+
+										winston.log("Message sent for an uploaded picture.");
+										callback(null, messageData);
+									}
+								}
+							);
 						}
-					);
+
+					});
 				}
 			});
 		}
