@@ -29,7 +29,7 @@ var handleUpload = function(req, res, callback) {
 
 	var opts = {
 		uri: req.uploadTarget.galleriesUrl,
-		headers: buildRequestHeaders
+		headers: buildRequestHeaders(req, res)
 	};
 
 	request.get(opts, function(err, result, body) {
@@ -52,7 +52,7 @@ var handleUpload = function(req, res, callback) {
 		} else {
 
 			for(var i = 0; i < body.galleries.length; i++) {
-				if (body.galleries[i].title == "Profile Pictures") {
+				if (body.galleries[i].title == req.uploadTarget.targetGallery) {
 
 					messageData.containerName = body.galleries[i].container_name;
 					messageData.galleryId = body.galleries[i].id;
@@ -62,11 +62,11 @@ var handleUpload = function(req, res, callback) {
 			if (typeof messageData.containerName == "undefined" || typeof messageData.galleryId == "undefined") {
 
 				sendErrorResponse(req, res, 404);
-				return new Error("We couldn't find the Profile Pictures gallery for user: %s", req.params.user);
+				return new Error("We couldn't find the Profile Pictures gallery for %s: %s", req.uploadTarget.entity, req.uploadTarget.objectId);
 			}
 
 			var blobService = azure.createBlobService();
-			var blobName = "upp_" + messageData.containerName + "/" + hash + "/raw" + ext;
+			var blobName = req.config.entityPrefix[req.uploadTarget.entity] + '_' + messageData.containerName + "/" + hash + "/raw" + ext;
 
 			winston.info("New Blob Name: %s", blobName);
 
@@ -93,7 +93,7 @@ var handleUpload = function(req, res, callback) {
 						original_image: messageData.originalImage,
 						cdn_url: req.config.cdnUrl,
 						update_object: true,
-						object_id: req.params.user
+						object_id: req.uploadTarget.objectId
 					};
 					
 					request.post(opts, function(err, updateResult, updateBody) {
@@ -170,7 +170,8 @@ module.exports.uploadUserPicture = function(req, res) {
 		file: req.files.image,
 		objectId: req.params.user,
 		entity: req.config.entities.userPhotos,
-		galleriesUrl: req.config.apiUrl + 'users/' + req.params.user + '/galleries'
+		galleriesUrl: req.config.apiUrl + 'users/' + req.params.user + '/galleries',
+		targetGallery: 'Profile Pictures'
 	};
 
 	res.type('application/json');
@@ -199,7 +200,38 @@ module.exports.uploadBrandPicture = function(req, res) {
 		file: req.files.image,
 		objectId: req.params.brand,
 		entity: req.config.entities.brandProfiles,
-		galleriesUrl: req.config.apiUrl + 'brands/' + req.params.brand + '/galleries'
+		galleriesUrl: req.config.apiUrl + 'brands/' + req.params.brand + '/galleries',
+		targetGallery: 'Profile Pictures'
+	};
+
+	res.type('application/json');
+
+	handleUpload(req, res, function(err, result) {
+
+		if (err) {
+
+			winston.error(err);
+			res.send(err);
+
+		} else {
+
+			winston.info("Message successfuly sent for brand: %s", req.params.brand);
+			console.log(util.inspect(result), {colors: true});
+
+			res.send(result);
+		}
+	});	
+}
+
+module.exports.uploadBrandBackground = function(req, res) {
+
+	req.uploadTarget = {
+
+		file: req.files.image,
+		objectId: req.params.brand,
+		entity: req.config.entities.brandBackgrounds,
+		galleriesUrl: req.config.apiUrl + 'brands/' + req.params.brand + '/galleries',
+		targetGallery: 'Backgrounds'
 	};
 
 	res.type('application/json');
