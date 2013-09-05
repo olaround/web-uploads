@@ -69,8 +69,8 @@ module.exports = (function() {
 				};
 
 				opts.qs = {
-					roles: 'user',
-					target_user_id: req.params.user
+					roles: 'admin,brand_manager',
+					object_id: req.params.brand
 				};
 
 				sendAuthRequest(req, res, next, opts);
