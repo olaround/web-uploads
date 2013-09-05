@@ -134,9 +134,9 @@ var handleUpload = function(req, res, callback) {
 
 						updateBody = JSON.parse(updateBody);
 
-						if (err || updateResult.statusCode != 200 || typeof updateBody.update_object != true) {
+						if (err || updateResult.statusCode != 200 || updateBody.update_object != true) {
 
-							winston.err("Something went wrong while trying to add the picture record for %s", req.uploadTarget.entity);
+							winston.error("Something went wrong while trying to add the picture record for %s", req.uploadTarget.entity);
 
 							if (err) {
 								winston.error(err);
@@ -174,6 +174,9 @@ var handleUpload = function(req, res, callback) {
 									} else {
 
 										winston.log("Message sent for an uploaded picture.");
+
+										// Delete the temp image
+
 										callback(null, messageData);
 									}
 								}
