@@ -107,21 +107,6 @@ app.all('/', function(req, res) {
 	res.redirect('http://olaround.me');
 });
 
-
-app.get('/users/:userId', function(req, res) {
-
-	var query = parseInt(req.params.userId) == NaN ? {username: req.params.userId} : {id: req.params.userId};
-	winston.info("User id a is a %s with value: %d", parseInt(req.params.userId) == NaN ? "string" : "number", query);
-
-	req.models.user.get(req.params.userId, function(err, user) {
-		if (err) { winston.error(err); }
-		else {
-			console.log(user);
-		}
-	});
-});
-
-
 /*
  * Match: POST /users/:user/picture
 */
