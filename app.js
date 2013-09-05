@@ -13,14 +13,12 @@ var
 
 // Create the app
 var app = express(), 
-	uploadMiddleware = authMiddleware = [];
+	uploadMiddleware = [];
 
 console.log('Starting Express...');
 
 // Define the GLOBAL configuration
 app.configure(function() {
-
-	console.log('Starting config...');
 
 	winston.setLevels(winston.config.syslog.levels);
 	app.set('port', process.env.PORT || 3000);
@@ -28,8 +26,6 @@ app.configure(function() {
 	app.use(express.logger('dev'));
 	app.use(express.compress());
 	app.use(express.methodOverride());
-
-	console.log('Loading custom config...');
 
 	// Load the config
 	app.use(function(req, res, next) {
@@ -56,9 +52,7 @@ app.configure(function() {
 		}
 	];
 
-	authMiddleware = [
-		
-	];
+	console.log('About to load express-winston...');
 
 	// express-winston logger makes sense BEFORE the router.
 	app.use(expressWinston.logger({
@@ -70,7 +64,10 @@ app.configure(function() {
 		]
 	}));
 
+	console.log('About to load Router...');
 	app.use(app.router);
+
+	console.log('About to load express-winston error logger...');
 
 	// express-winston errorLogger makes sense AFTER the router.
 	app.use(expressWinston.errorLogger({
@@ -86,6 +83,8 @@ app.configure(function() {
 // Define the DEVELOPMENT configuration
 app.configure('development', function() {
 
+	console.log('Loading development configuration...');
+
 	// Setup Winston to use Console...
 	winston.remove(winston.transports.Console);
 	winston.add(winston.transports.Console, { colorize: true, timestamp: true, level: 'crit' });
@@ -98,9 +97,22 @@ app.configure('development', function() {
 // Define the PRODUCTION configuration
 app.configure('production', function() {
 
-	// Setup Winston to use File Logging
-	winston.add(winston.transports.File, { filename: "./logs/node-execution-log.txt", colorize: true, timestamp: true, level: 'crit' });
-	winston.remove(winston.transports.Console);
+	console.log('Loading production configuration...');
+
+	fs.mkdir('./logs', function(err) {
+
+		if (err && err.code != 'EEXIST') {
+
+			winston.error("We couldn't create the logs directory: %s", './logs');
+			console.log(util.inspect(err, {colors: true}));
+
+		} else {
+
+			// Setup Winston to use File Logging
+			winston.add(winston.transports.File, { filename: "./logs/node-execution-log.txt", colorize: true, timestamp: true, level: 'crit' });
+			winston.remove(winston.transports.Console);
+		}
+	});
 });
 
 // Setup application routing
