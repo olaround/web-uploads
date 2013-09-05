@@ -17,6 +17,15 @@ module.exports = (function() {
 				});
 				break;
 
+			case 401:
+
+				res.send(401, {
+					error: 'invalid_grant', 
+					error_description: 'Invalid authorization credentials supplied.',
+					error_code: 15
+				});
+				break;
+
 			case 404:
 
 				res.send(404, {
