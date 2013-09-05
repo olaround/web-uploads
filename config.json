@@ -1,0 +1,25 @@
+{
+	"apiUrl": "https://api.olaround.me/v2/",
+	"cdnUrl": "http://olrd.blob.core.windows.net/uploads/",
+	"topicName": "olrd-picsys",
+	"entities" : {
+		"userPhotos": "user_profile",
+		"brandBackgrounds": "brands_background",
+		"brandProfiles": "brands_profile",
+		"venueProfiles": "venues",
+		"categories": "venues_category",
+		"menuItems": "menus_item",
+		"menuCategories": "menus_categories",
+		"gelleryPhotos": "gallery_photos"
+	},
+	"entityPrefix": {
+		"userPhotos": "upp",
+		"brandBackgrounds": "bbp",
+		"brandProfiles": "bpp",
+		"venueProfiles": "vpp",
+		"categories": "vcp",
+		"menuItems": "mip",
+		"menuCategories": "mcp",
+		"gelleryPhotos": "gpp"
+	}
+}
