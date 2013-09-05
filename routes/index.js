@@ -1,47 +1,16 @@
 var request = require('request'),
 	winston = require('winston'),
 	util = require('util'),
-	azure = require('azure');
+	azure = require('azure'),
+	fs = require('fs');
 
-var sendErrorResponse = function(req, res, code) {
+var buildRequestHeaders = function(req, res) {
 
-	res.type('application/json');
-	
-	switch (code) {
-
-		case 400:
-			
-			res.send(400, {
-				error: "invalid_request", 
-				error_description: "The received request was invalid. Either you are missing a required parameter or passed invalid data.", 
-				error_code: 10
-			});
-			break;
-
-		case 404:
-
-			res.send(404, {
-				error: "not_found", 
-				error_description: "We couldn't find the content you requested. Make sure the identifier is correct.", 
-				error_code: 11
-			});
-			break;
-
-		default:
-			res.send(500, {
-				error: "unknown_exception", 
-				error_description: "TAn unknown error occured. Please contact support if the problem persists.", 
-				error_code: 0
-			});
-			break;
-	}
-
-	return;
-};
-
-var buildAzureSourceUrl = function(blobName) {
-	return "http://olrd.blob.core.windows.net/uploads/" + blobName;
-};
+	return {
+		authorization: req.headers.authorization,
+		"x-olaround-debug-mode": req.headers['x-olaround-debug-mode'] || "Header"
+	};
+}
 
 var handleUpload = function(req, res, callback) {
 
@@ -59,11 +28,8 @@ var handleUpload = function(req, res, callback) {
 	};
 
 	var opts = {
-		uri: 'https://api.olaround.me/v2/users/' + req.params.user + '/galleries',
-		headers: {
-			authorization: req.headers.authorization,
-			"x-olaround-debug-mode": req.headers['x-olaround-debug-mode'] || "Header"
-		}
+		uri: req.uploadTarget.galleriesUrl,
+		headers: buildRequestHeaders
 	};
 
 	request.get(opts, function(err, result, body) {
@@ -115,17 +81,17 @@ var handleUpload = function(req, res, callback) {
 
 				} else {
 
-					messageData.sourceUrl = buildAzureSourceUrl(blobName);
+					messageData.sourceUrl = req.config.cdnUrl + blobName;
 
 					console.log(util.inspect(messageData), {colors: true});
 
-					opts.uri = "https://api.olaround.me/v2/pictures/" + req.uploadTarget.entity;
+					opts.uri = req.config.apiUrl + "pictures/" + req.uploadTarget.entity;
 					opts.form = {
 
 						gallery_id: messageData.galleryId,
 						container_name: messageData.containerName,
 						original_image: messageData.originalImage,
-						cdn_url: buildAzureSourceUrl(''),
+						cdn_url: req.config.cdnUrl,
 						update_object: true,
 						object_id: req.params.user
 					};
@@ -156,7 +122,7 @@ var handleUpload = function(req, res, callback) {
 							var sbService = azure.createServiceBusService();
 							sbService.sendTopicMessage(
 
-								'olrd-picsys',
+								req.config.topicName,
 								{
 									body: JSON.stringify(messageData),
 									customProperties: {
@@ -176,6 +142,13 @@ var handleUpload = function(req, res, callback) {
 										winston.log("Message sent for an uploaded picture.");
 
 										// Delete the temp image
+										fs.unlink(req.files.image.path, function(err) {
+
+											if (err) { winston.error("Couldn't delete file: %s", req.files.image.path); }
+											else {
+												winston.info("Uploaded and deleted local file: %s", req.files.image.path);
+											}
+										});
 
 										callback(null, messageData);
 									}
@@ -192,20 +165,12 @@ var handleUpload = function(req, res, callback) {
 
 module.exports.uploadUserPicture = function(req, res) {
 
-	if (typeof req.files.image == "undefined") {
-
-		winston.error("No file attached for User Picture");
-		console.log(util.inspect(req.files));
-		
-		sendErrorResponse(req, res, 400);
-		return new Error(req.files);
-	}
-
 	req.uploadTarget = {
 
 		file: req.files.image,
 		objectId: req.params.user,
-		entity: "user_profile"
+		entity: req.config.entities.userPhotos,
+		galleriesUrl: req.config.apiUrl + 'users/' + req.params.user + '/galleries'
 	};
 
 	res.type('application/json');
@@ -223,28 +188,35 @@ module.exports.uploadUserPicture = function(req, res) {
 			console.log(util.inspect(result), {colors: true});
 
 			res.send(result);
-
-			/*var opts = {
-				uri: 'http://api.olaround.me/v1/' + req.params.user + '/profile',
-				headers: {
-					authorization: req.headers.authorization,
-					"x-olaround-debug-mode": req.headers['x-olaround-debug-mode'] || "Header"
-				}
-			};
-
-			request.get(opts, function(err, result, body) {
-
-				if (err) {
-				
-					winston.error(err);
-					res.send(500, err);
-				
-				} else {
-
-					winston.info(body);
-					res.send(body);
-				}
-			});*/
 		}
 	});
 };
+
+module.exports.uploadBrandPicture = function(req, res) {
+
+	req.uploadTarget = {
+
+		file: req.files.image,
+		objectId: req.params.brand,
+		entity: req.config.entities.brandProfiles,
+		galleriesUrl: req.config.apiUrl + 'brands/' + req.params.brand + '/galleries'
+	};
+
+	res.type('application/json');
+
+	handleUpload(req, res, function(err, result) {
+
+		if (err) {
+
+			winston.error(err);
+			res.send(err);
+
+		} else {
+
+			winston.info("Message successfuly sent for brand: %s", req.params.brand);
+			console.log(util.inspect(result), {colors: true});
+
+			res.send(result);
+		}
+	});	
+}
