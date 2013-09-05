@@ -13,13 +13,13 @@
 		"gelleryPhotos": "gallery_photos"
 	},
 	"entityPrefix": {
-		"userPhotos": "upp",
-		"brandBackgrounds": "bbp",
-		"brandProfiles": "bpp",
-		"venueProfiles": "vpp",
-		"categories": "vcp",
-		"menuItems": "mip",
-		"menuCategories": "mcp",
-		"gelleryPhotos": "gpp"
+		"user_profile": "upp",
+		"brands_background": "bbp",
+		"brands_profile": "bpp",
+		"venues": "vpp",
+		"venues_category": "vcp",
+		"menus_item": "mip",
+		"menus_categories": "mcp",
+		"gallery_photos": "gpp"
 	}
 }
