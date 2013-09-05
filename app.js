@@ -132,6 +132,11 @@ app.post('/users/:user/picture', AuthHelper.getAuthHelper('user'), uploadMiddlew
 */
 app.post('/brands/:brand/picture', AuthHelper.getAuthHelper('brand'), uploadMiddleware, routes.uploadBrandPicture);
 
+/*
+ * Match: POST /brands/:brand/background_picture
+*/
+app.post('/brands/:brand/background_picture', AuthHelper.getAuthHelper('brand'), uploadMiddleware, routes.uploadBrandBackground);
+
 
 // Start the Server
 http.createServer(app).listen(app.get('port'), function(){
