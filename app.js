@@ -4,6 +4,8 @@ var
 	express = require("express"),
 	http = require("http"),
 	path = require("path"),
+	fs = require('fs'),
+	util = require('util'),
 	request = require('request'),
 	winston = require("winston"),
 	expressWinston = require("express-winston"),
@@ -153,8 +155,6 @@ http.createServer(app).listen(app.get('port'), function(){
  * Loop through all the files in the ./temp directory and delete the ones older than 30 minutes.
  *
 */
-var fs = require('fs')
-	util = require('util');
 
 // Create temp directory
 fs.mkdir(app.get('tempDir'), function(err) {
