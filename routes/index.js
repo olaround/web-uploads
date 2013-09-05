@@ -83,7 +83,7 @@ var handleUpload = function(req, res, callback) {
 
 					messageData.sourceUrl = req.config.cdnUrl + blobName;
 
-					console.log(util.inspect(messageData), {colors: true});
+					console.log(util.inspect(messageData, {colors: true}));
 
 					opts.uri = req.config.apiUrl + "pictures/" + req.uploadTarget.entity;
 					opts.form = {
@@ -186,7 +186,7 @@ module.exports.uploadUserPicture = function(req, res) {
 		} else {
 
 			winston.info("Message successfuly sent for user: %s", req.params.user);
-			console.log(util.inspect(result), {colors: true});
+			console.log(util.inspect(result, {colors: true}));
 
 			res.send(result);
 		}
@@ -216,7 +216,7 @@ module.exports.uploadBrandPicture = function(req, res) {
 		} else {
 
 			winston.info("Message successfuly sent for brand: %s", req.params.brand);
-			console.log(util.inspect(result), {colors: true});
+			console.log(util.inspect(result, {colors: true}));
 
 			res.send(result);
 		}
@@ -246,7 +246,7 @@ module.exports.uploadBrandBackground = function(req, res) {
 		} else {
 
 			winston.info("Message successfuly sent for brand: %s", req.params.brand);
-			console.log(util.inspect(result), {colors: true});
+			console.log(util.inspect(result, {colors: true}));
 
 			res.send(result);
 		}
