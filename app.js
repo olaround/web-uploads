@@ -8,7 +8,8 @@ var
 	expressWinston = require("express-winston"),
 	model = require('./models/model'),
 	routes = require("./routes"),
-	AuthHelper = require('./helpers/auth');
+	AuthHelper = require('./helpers/auth'),
+	ErrorHelper = require('./helpers/error');
 
 // Create the app
 var app = express(), 
@@ -24,10 +25,30 @@ app.configure(function() {
 	app.use(express.compress());
 	app.use(express.methodOverride());
 
+	// Load the config
+	app.use(function(req, res, next) {
+		req.config = require('./config.json');
+		next();
+	});
+
 	app.use(orm.express(process.env.MYSQL_CONN_STR, model));
 
 	uploadMiddleware = [
-		express.multipart({keepExtensions: true, uploadDir: app.get('tempDir')})
+		express.multipart({keepExtensions: true, uploadDir: app.get('tempDir')}),
+
+		function(req, res, next) {
+			if (typeof req.files.image == "undefined") {
+
+				winston.error("No file attached for Picture Upload");
+				console.log(util.inspect(req.files));
+				
+				ErrorHelper.sendError(req, res, 400);
+				return new Error(req.files);
+
+			} else {
+				next();
+			}
+		}
 	];
 
 	authMiddleware = [
@@ -105,6 +126,11 @@ app.get('/users/:userId', function(req, res) {
  * Match: POST /users/:user/picture
 */
 app.post('/users/:user/picture', AuthHelper.getAuthHelper('user'), uploadMiddleware, routes.uploadUserPicture);
+
+/*
+ * Match: POST /brands/:brand/picture
+*/
+app.post('/brands/:brand/picture', AuthHelper.getAuthHelper('brand'), uploadMiddleware, routes.uploadBrandPicture);
 
 
 // Start the Server
