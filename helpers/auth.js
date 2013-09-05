@@ -1,9 +1,38 @@
 var request = require('request'),
-	winston = require('winston');
+	winston = require('winston'),
+	config = require('../config.json'),
+	ErrorHelper = require('./error');
 
 module.exports = (function() {
 
 	var Auth = function() {};
+
+	var opts = {
+		uri: config.apiUrl + 'accounts/verify_access',
+		headers: {
+			"x-olaround-debug-mode": "Header"
+		}
+	};
+
+	var sendAuthRequest =  function(req, res, next, opts) {
+
+		request(opts, function(err, result, body) {
+			if (err || result.statusCode != 200) {
+
+				if (err) 
+					winston.error(err);
+				
+				res.type('application/json');
+				res.send(result.statusCode, body);
+				return new Error(body);
+
+				return;
+			
+			} else {
+				next();
+			}
+		});
+	};
 
 	var	helpers = {
 
@@ -11,38 +40,44 @@ module.exports = (function() {
 
 			if (req.headers.authorization) {
 
-				var opts = {
-					uri: 'https://api.olaround.me/v2/accounts/verify_access',
-					headers: {
-						authorization: req.headers.authorization,
-						"x-olaround-debug-mode": req.headers['x-olaround-debug-mode'] || "Header"
-					},
-					qs: {
-						roles: 'user',
-						target_user_id: req.params.user
-					}
+				opts.headers = {
+					authorization: req.headers.authorization,
+					"x-olaround-debug-mode": req.headers['x-olaround-debug-mode'] || "Header"
 				};
 
-				request(opts, function(err, result, body) {
-					if (err || result.statusCode != 200) {
+				opts.qs = {
+					roles: 'user',
+					target_user_id: req.params.user
+				};
 
-						if (err) 
-							winston.error(err);
-						
-						res.type('application/json');
-						res.send(result.statusCode, body);
-						return new Error(body);
+				sendAuthRequest(req, res, next, opts);
 
-						return;
-					
-					} else {
-						next();
-					}
-				});
 			} else {
 
-				res.type('application/json');
-				res.send(401, {error: 'invalid_grant', error_description: 'Invalid authorization credentials supplied.'});
+				ErrorHelper.sendError(req, res, 401);
+				return;
+			}
+		},
+
+		brand: function(req, res, next) {
+
+			if (req.headers.authorization) {
+
+				opts.headers = {
+					authorization: req.headers.authorization,
+					"x-olaround-debug-mode": req.headers['x-olaround-debug-mode'] || "Header"
+				};
+
+				opts.qs = {
+					roles: 'user',
+					target_user_id: req.params.user
+				};
+
+				sendAuthRequest(req, res, next, opts);
+
+			} else {
+
+				ErrorHelper.sendError(req, res, 401);
 				return;
 			}
 		}
