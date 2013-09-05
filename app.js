@@ -20,12 +20,16 @@ console.log('Starting Express...');
 // Define the GLOBAL configuration
 app.configure(function() {
 
+	console.log('Starting config...');
+
 	winston.setLevels(winston.config.syslog.levels);
 	app.set('port', process.env.PORT || 3000);
 	app.set('tempDir', "./temp");
 	app.use(express.logger('dev'));
 	app.use(express.compress());
 	app.use(express.methodOverride());
+
+	console.log('Loading custom config...');
 
 	// Load the config
 	app.use(function(req, res, next) {
