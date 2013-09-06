@@ -1,5 +1,3 @@
-console.log('Started Node...');
-
 var 
 	express = require("express"),
 	http = require("http"),
@@ -16,8 +14,6 @@ var
 // Create the app
 var app = express(), 
 	uploadMiddleware = [];
-
-console.log('Starting Express...');
 
 // Define the GLOBAL configuration
 app.configure(function() {
@@ -54,8 +50,6 @@ app.configure(function() {
 		}
 	];
 
-	console.log('About to load express-winston...');
-
 	// express-winston logger makes sense BEFORE the router.
 	app.use(expressWinston.logger({
 		transports: [
@@ -66,10 +60,7 @@ app.configure(function() {
 		]
 	}));
 
-	console.log('About to load Router...');
 	app.use(app.router);
-
-	console.log('About to load express-winston error logger...');
 
 	// express-winston errorLogger makes sense AFTER the router.
 	app.use(expressWinston.errorLogger({
@@ -85,8 +76,6 @@ app.configure(function() {
 // Define the DEVELOPMENT configuration
 app.configure('development', function() {
 
-	console.log('Loading development configuration...');
-
 	// Setup Winston to use Console...
 	winston.remove(winston.transports.Console);
 	winston.add(winston.transports.Console, { colorize: true, timestamp: true, level: 'crit' });
@@ -98,8 +87,6 @@ app.configure('development', function() {
 
 // Define the PRODUCTION configuration
 app.configure('production', function() {
-
-	console.log('Loading production configuration...');
 
 	fs.mkdir('./logs', function(err) {
 
