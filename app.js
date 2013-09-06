@@ -9,7 +9,9 @@ var
 	expressWinston = require("express-winston"),
 	routes = require("./routes"),
 	AuthHelper = require('./helpers/auth'),
-	ErrorHelper = require('./helpers/error');
+	ErrorHelper = require('./helpers/error'),
+	config = require('./config.json'),
+	counter = 0;
 
 // Create the app
 var app = express(), 
@@ -27,8 +29,9 @@ app.configure(function() {
 
 	// Load the config
 	app.use(function(req, res, next) {
-		req.config = require('./config.json');
+		req.config = config;
 		next();
+		winston.warning("Current Count: %d", ++counter);
 	});
 
 
@@ -98,10 +101,15 @@ app.configure('production', function() {
 		} else {
 
 			// Setup Winston to use File Logging
-			winston.add(winston.transports.File, { filename: "./logs/node-execution-log.txt", colorize: true, timestamp: true, level: 'crit' });
+			winston.add(winston.transports.File, { filename: "./logs/node-execution-log.txt", timestamp: true, level: 'crit' });
 			winston.remove(winston.transports.Console);
+			winston.add(winston.transports.Console, { colorize: true, timestamp: true, level: 'crit' });
+
+			winston.info('Using console logging...');
 		}
 	});
+
+	app.use(express.errorHandler());
 });
 
 // Setup application routing
