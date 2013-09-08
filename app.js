@@ -141,7 +141,13 @@ app.post('/v2/brands/:brand/background_picture', AuthHelper.getAuthHelper('brand
 */
 app.post('/rt/facebook/user', function(req, res) {
 
-	console.log(util.inspect(req));
+	console.log(util.inspect(req.query));
+
+	if (req.query['hub.mode'] == "subscribe" || req.query['hub.mode'] == "thisisarandomtoken") {
+		res.send(req.query['hub.challenge']);
+	} else {
+		res.send('Invalid Request');
+	}
 });
 
 
