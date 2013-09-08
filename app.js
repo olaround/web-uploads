@@ -26,6 +26,8 @@ app.configure(function() {
 	app.use(express.logger('dev'));
 	app.use(express.compress());
 	app.use(express.methodOverride());
+	app.use(express.json());
+	app.use(express.urlencoded());
 
 	// Load the config
 	app.use(function(req, res, next) {
