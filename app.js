@@ -137,6 +137,14 @@ app.post('/v2/brands/:brand/picture', AuthHelper.getAuthHelper('brand'), uploadM
 app.post('/v2/brands/:brand/background_picture', AuthHelper.getAuthHelper('brand'), uploadMiddleware, routes.uploadBrandBackground);
 
 /*
+ * Match: POST /rt/facebook/user
+*/
+app.post('/rt/facebook/user', function(req, res) {
+
+	console.log(util.inspect(req));
+});
+
+/*
  * Match: GET /rt/facebook/user
 */
 app.get('/rt/facebook/user', function(req, res) {
@@ -148,10 +156,6 @@ app.get('/rt/facebook/user', function(req, res) {
 	} else {
 		res.send('Invalid Request');
 	}
-
-	console.log(req.query.hub.mode);
-	console.log(req.query.hub.challenge);
-	console.log(req.query.hub.challenge);
 });
 
 
