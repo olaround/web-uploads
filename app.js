@@ -124,17 +124,25 @@ app.all('/', function(req, res) {
 /*
  * Match: POST /users/:user/picture
 */
-app.post('/users/:user/picture', AuthHelper.getAuthHelper('user'), uploadMiddleware, routes.uploadUserPicture);
+app.post('/v2/users/:user/picture', AuthHelper.getAuthHelper('user'), uploadMiddleware, routes.uploadUserPicture);
 
 /*
  * Match: POST /brands/:brand/picture
 */
-app.post('/brands/:brand/picture', AuthHelper.getAuthHelper('brand'), uploadMiddleware, routes.uploadBrandPicture);
+app.post('/v2/brands/:brand/picture', AuthHelper.getAuthHelper('brand'), uploadMiddleware, routes.uploadBrandPicture);
 
 /*
  * Match: POST /brands/:brand/background_picture
 */
-app.post('/brands/:brand/background_picture', AuthHelper.getAuthHelper('brand'), uploadMiddleware, routes.uploadBrandBackground);
+app.post('/v2/brands/:brand/background_picture', AuthHelper.getAuthHelper('brand'), uploadMiddleware, routes.uploadBrandBackground);
+
+/*
+ * Match: GET /rt/facebook/user
+*/
+app.post('/rt/facebook/user', function(req, res) {
+
+	console.log(util.inspect(req));
+});
 
 
 // Start the Server
