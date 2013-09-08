@@ -141,7 +141,7 @@ app.post('/v2/brands/:brand/background_picture', AuthHelper.getAuthHelper('brand
 */
 app.post('/rt/facebook/user', function(req, res) {
 
-	console.log(util.inspect(req));
+	console.log(util.inspect(req.body));
 });
 
 /*
@@ -149,7 +149,7 @@ app.post('/rt/facebook/user', function(req, res) {
 */
 app.get('/rt/facebook/user', function(req, res) {
 
-	console.log(util.inspect(req.query));
+	//console.log(util.inspect(req.query));
 
 	if (req.query['hub.mode'] == "subscribe" && req.query['hub.verify_token'] == "thisisarandomtoken") {
 		res.send(req.query['hub.challenge']);
