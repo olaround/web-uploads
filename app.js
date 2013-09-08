@@ -143,11 +143,15 @@ app.get('/rt/facebook/user', function(req, res) {
 
 	console.log(util.inspect(req.query));
 
-	if (req.query['hub.mode'] == "subscribe" || req.query['hub.mode'] == "thisisarandomtoken") {
+	if (req.query['hub.mode'] == "subscribe" && req.query['hub.verify_token'] == "thisisarandomtoken") {
 		res.send(req.query['hub.challenge']);
 	} else {
 		res.send('Invalid Request');
 	}
+
+	console.log(req.query.hub.mode);
+	console.log(req.query.hub.challenge);
+	console.log(req.query.hub.challenge);
 });
 
 
