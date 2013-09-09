@@ -6,5 +6,5 @@ var request = require('request'),
 
 module.exports.userUpdated = function(req, res) {
 
-	
+	console.log(util.inspect(req.body, {colors: true, depth: 5}));
 }

@@ -164,10 +164,7 @@ app.post('/v2/brands/:brand/background_picture', AuthHelper.getAuthHelper('brand
 /*
  * Match: POST /rt/facebook/user
 */
-app.post('/rt/facebook/user', function(req, res) {
-
-	console.log(util.inspect(req.body));
-});
+app.post('/rt/facebook/user', controllers.Realtime.userUpdated);
 
 /*
  * Match: GET /rt/facebook/user

@@ -1,6 +1,8 @@
-var Uploads = require('./uploads');
+var Uploads = require('./uploads'),
+	Realtime = require('./realtime');
 
 module.exports = {
-	
-	Uploads: Uploads
+
+	Uploads: Uploads,
+	Realtime: Realtime
 };
