@@ -39,16 +39,22 @@ app.configure(function() {
 	// Overload the res.send() function to handle custom logic
 	app.use(function(req, res, next) {
 
-		var baseSend = res.send;
-		res.send = function(status, body) {
+		res._baseSend = res.send;
+		var newSend = function(status, body) {
 
 			res.set({
 				'X-Olaround-Debug-Mode': 'Header',
 				'X-Olaround-Served-With': 'node.js/uploads'
 			});
 
-			baseSend(status, body);
+			if (typeof body == "undefined") {
+				res._baseSend(status);
+			} else {
+				res._baseSend(status, body);
+			}
 		}
+
+		res.send = newSend;
 
 		next();
 	});
