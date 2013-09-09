@@ -7,7 +7,7 @@ var
 	request = require('request'),
 	winston = require("winston"),
 	expressWinston = require("express-winston"),
-	routes = require("./routes"),
+	controllers = require("./controllers"),
 	AuthHelper = require('./helpers/auth'),
 	ErrorHelper = require('./helpers/error'),
 	config = require('./config.json'),
@@ -34,6 +34,23 @@ app.configure(function() {
 		req.config = config;
 		next();
 		winston.warning("Current Count: %d", ++counter);
+	});
+
+	// Overload the res.send() function to handle custom logic
+	app.use(function(req, res, next) {
+
+		var baseSend = res.send;
+		res.send = function(status, body) {
+
+			res.set({
+				'X-Olaround-Debug-Mode': 'Header',
+				'X-Olaround-Served-With': 'node.js/uploads'
+			});
+
+			baseSend(status, body);
+		}
+
+		next();
 	});
 
 
@@ -126,17 +143,17 @@ app.all('/', function(req, res) {
 /*
  * Match: POST /users/:user/picture
 */
-app.post('/v2/users/:user/picture', AuthHelper.getAuthHelper('user'), uploadMiddleware, routes.uploadUserPicture);
+app.post('/v2/users/:user/picture', AuthHelper.getAuthHelper('user'), uploadMiddleware, controllers.Uploads.uploadUserPicture);
 
 /*
  * Match: POST /brands/:brand/picture
 */
-app.post('/v2/brands/:brand/picture', AuthHelper.getAuthHelper('brand'), uploadMiddleware, routes.uploadBrandPicture);
+app.post('/v2/brands/:brand/picture', AuthHelper.getAuthHelper('brand'), uploadMiddleware, controllers.Uploads.uploadBrandPicture);
 
 /*
  * Match: POST /brands/:brand/background_picture
 */
-app.post('/v2/brands/:brand/background_picture', AuthHelper.getAuthHelper('brand'), uploadMiddleware, routes.uploadBrandBackground);
+app.post('/v2/brands/:brand/background_picture', AuthHelper.getAuthHelper('brand'), uploadMiddleware, controllers.Uploads.uploadBrandBackground);
 
 /*
  * Match: POST /rt/facebook/user
