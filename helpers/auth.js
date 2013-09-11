@@ -5,7 +5,7 @@ var request = require('request'),
 
 module.exports = (function() {
 
-	var Auth = function() {};
+	var Auth = {};
 
 	var opts = {
 		uri: config.apiUrl + 'accounts/verify_access',
