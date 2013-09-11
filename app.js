@@ -67,7 +67,7 @@ app.configure(function() {
 			if (typeof req.files.image == "undefined") {
 
 				winston.error("No file attached for Picture Upload");
-				console.log(util.inspect(req.files));
+				console.log(util.inspect(req.files, {colors: true, depth: 5}));
 				
 				ErrorHelper.sendError(req, res, 400);
 				return new Error(req.files);
