@@ -6,8 +6,10 @@ var
 	util = require('util'),
 	request = require('request'),
 	winston = require("winston"),
+	orm = require('orm'),
 	expressWinston = require("express-winston"),
 	controllers = require("./controllers"),
+	models = require('./models/model'),
 	AuthHelper = require('./helpers/auth'),
 	ErrorHelper = require('./helpers/error'),
 	config = require('./config.json'),
@@ -35,6 +37,8 @@ app.configure(function() {
 		next();
 		winston.warning("Current Count: %d", ++counter);
 	});
+
+	app.use(orm.express(process.env.MYSQL_CONN_STR, models));
 
 	// Overload the res.send() function to handle custom logic
 	app.use(function(req, res, next) {
