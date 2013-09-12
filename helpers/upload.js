@@ -2,14 +2,13 @@ var request = require('request'),
 	winston = require('winston'),
 	util = require('util'),
 	azure = require('azure'),
-	ErrorHelper = require('../helpers/error'),
 	fs = require('fs');
 
-var buildRequestHeaders = function(req, res) {
+var buildRequestHeaders = function(headers) {
 
 	return {
-		authorization: req.headers.authorization,
-		"x-olaround-debug-mode": req.headers['x-olaround-debug-mode'] || "Header"
+		authorization: headers.authorization,
+		"x-olaround-debug-mode": headers['x-olaround-debug-mode'] || "Header"
 	};
 }
 
@@ -17,27 +16,27 @@ module.exports = (function() {
 
 	var handler = {};
 
-	var handleUpload = function(req, res, callback) {
+	var handleUpload = function(opts, callback) {
 
-		var hash = require('crypto').createHash('md5').update(req.uploadTarget.file.name).update(Date.now().toString()).digest('hex');
-		var ext = (function(filename) { var i = filename.lastIndexOf('.'); return (i < 0) ? '' : filename.substr(i); })(req.uploadTarget.file.name);
+		var hash = require('crypto').createHash('md5').update(opts.uploadTarget.file.name).update(Date.now().toString()).digest('hex');
+		var ext = (function(filename) { var i = filename.lastIndexOf('.'); return (i < 0) ? '' : filename.substr(i); })(opts.uploadTarget.file.name);
 		var rawName = hash + ext;
 
 		winston.info("New filename: %s", rawName);
 
 		var messageData = { 
 
-			entity: req.uploadTarget.entity,
+			entity: opts.uploadTarget.entity,
 			originalImage: rawName,
 			sourceUrl: "" 
 		};
 
-		var opts = {
-			uri: req.uploadTarget.galleriesUrl,
-			headers: buildRequestHeaders(req, res)
+		var requestOpts = {
+			uri: opts.uploadTarget.galleriesUrl,
+			headers: buildRequestHeaders(opts.headers)
 		};
 
-		request.get(opts, function(err, result, body) {
+		request.get(requestOpts, function(err, result, body) {
 
 			body = JSON.parse(body);
 
@@ -49,15 +48,14 @@ module.exports = (function() {
 
 				console.log(util.inspect(result));
 				console.log(util.inspect(body));
-				
-				res.type('application/json');
-				res.send(result.statusCode, body);
+
+				callback({statusCode: result.statusCode, endpoint: opts.uploadTarget.galleriesUrl, body: body});
 				return new Error(body);
 			
 			} else {
 
 				for(var i = 0; i < body.galleries.length; i++) {
-					if (body.galleries[i].title == req.uploadTarget.targetGallery) {
+					if (body.galleries[i].title == opts.uploadTarget.targetGallery) {
 
 						messageData.containerName = body.galleries[i].container_name;
 						messageData.galleryId = body.galleries[i].id;
@@ -66,16 +64,18 @@ module.exports = (function() {
 
 				if (typeof messageData.containerName == "undefined" || typeof messageData.galleryId == "undefined") {
 
-					ErrorHelper.sendError(req, res, 404);
-					return new Error("We couldn't find the Profile Pictures gallery for %s: %s", req.uploadTarget.entity, req.uploadTarget.objectId);
+					callback({statusCode: 404, endpoint: opts.uploadTarget.galleriesUrl});
+					return new Error("We couldn't find the Profile Pictures gallery for %s: %s", opts.uploadTarget.entity, opts.uploadTarget.objectId);
 				}
 
 				var blobService = azure.createBlobService();
-				var blobName = req.config.entityPrefix[req.uploadTarget.entity] + '_' + messageData.containerName + "/" + hash + "/raw" + ext;
+				var blobName = opts.config.entityPrefix[opts.uploadTarget.entity] + '_' + messageData.containerName + "/" + hash + "/raw" + ext;
 
 				winston.info("New Blob Name: %s", blobName);
 
-				blobService.createBlockBlobFromStream('uploads', blobName, req.uploadTarget.file.stream, req.uploadTarget.file.size, function(err) {
+				console.log(util.inspect(opts.uploadTarget, {colors: true, depth: 5}));
+
+				blobService.createBlockBlobFromFile('uploads', blobName, opts.uploadTarget.file.path, function(err) {
 
 					if (err) {
 
@@ -86,28 +86,28 @@ module.exports = (function() {
 
 					} else {
 
-						messageData.sourceUrl = req.config.cdnUrl + blobName;
+						messageData.sourceUrl = opts.config.cdnUrl + blobName;
 
 						console.log(util.inspect(messageData, {colors: true}));
 
-						opts.uri = req.config.apiUrl + "pictures/" + req.uploadTarget.entity;
-						opts.form = {
+						requestOpts.uri = opts.config.apiUrl + "pictures/" + opts.uploadTarget.entity;
+						requestOpts.form = {
 
 							gallery_id: messageData.galleryId,
 							container_name: messageData.containerName,
 							original_image: messageData.originalImage,
-							cdn_url: req.config.cdnUrl,
+							cdn_url: opts.config.cdnUrl,
 							update_object: true,
-							object_id: req.uploadTarget.objectId
+							object_id: opts.uploadTarget.objectId
 						};
 						
-						request.post(opts, function(err, updateResult, updateBody) {
+						request.post(requestOpts, function(err, updateResult, updateBody) {
 
 							updateBody = JSON.parse(updateBody);
 
 							if (err || updateResult.statusCode != 200 || updateBody.update_object != true) {
 
-								winston.error("Something went wrong while trying to add the picture record for %s", req.uploadTarget.entity);
+								winston.error("Something went wrong while trying to add the picture record for %s", opts.uploadTarget.entity);
 
 								if (err) {
 									winston.error(err);
@@ -115,9 +115,8 @@ module.exports = (function() {
 
 								console.log(util.inspect(updateResult));
 								console.log(util.inspect(updateBody));
-								
-								res.type('application/json');
-								res.send(updateResult.statusCode, updateBody);
+
+								callback({statusCode: updateResult.statusCode, endpoint: requestOpts.uri, body: updateBody});
 								return new Error(updateBody);
 
 							} else {
@@ -127,11 +126,11 @@ module.exports = (function() {
 								var sbService = azure.createServiceBusService();
 								sbService.sendTopicMessage(
 
-									req.config.topicName,
+									opts.config.topicName,
 									{
 										body: JSON.stringify(messageData),
 										customProperties: {
-											entity: req.uploadTarget.entity
+											entity: opts.uploadTarget.entity
 										}
 									},
 									function(err, result) {
@@ -144,15 +143,15 @@ module.exports = (function() {
 
 										} else {
 
-											winston.log("Message sent for an uploaded picture.");
+											winston.info("Message sent for an uploaded picture.");
 
 											// Delete the temp image
-											if (req.uploadTarget.file.isFile) {
-												fs.unlink(req.uploadTarget.file.file.path, function(err) {
+											if (opts.uploadTarget.file.isFile) {
+												fs.unlink(opts.uploadTarget.file.path, function(err) {
 
-													if (err) { winston.error("Couldn't delete file: %s", req.uploadTarget.file.file.path); }
+													if (err) { winston.error("Couldn't delete file: %s", opts.uploadTarget.file.path); }
 													else {
-														winston.info("Uploaded and deleted local file: %s", req.uploadTarget.file.file.path);
+														winston.info("Uploaded and deleted local file: %s", opts.uploadTarget.file.path);
 													}
 												});
 											}
@@ -171,6 +170,6 @@ module.exports = (function() {
 	}
 
 	handler.upload = handleUpload;
-	
+
 	return handler;
 })();
