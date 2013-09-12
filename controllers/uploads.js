@@ -1,33 +1,50 @@
 var winston = require('winston'),
 	util = require('util'),
 	UploadHelper = require('../helpers/upload'),
+	ErrorHelper = require('../helpers/error'),
 	fs = require('fs');
 
 module.exports.uploadUserPicture = function(req, res) {
 
-	req.uploadTarget = {
+	var opts = {
 
-		file: {
-			name: req.files.image.name,
-			isFile: true,
-			file: req.files.image,
-			stream: fs.createReadStream(req.files.image.path),
-			size: req.files.image.size
-		},
-		objectId: req.params.user,
-		entity: req.config.entities.userPhotos,
-		galleriesUrl: req.config.apiUrl + 'users/' + req.params.user + '/galleries',
-		targetGallery: 'Profile Pictures'
+		config: req.config,
+		headers: req.headers,
+		uploadTarget: {
+
+			file: {
+				name: req.files.image.name,
+				isFile: true,
+				path: req.files.image.path
+			},
+			objectId: req.params.user,
+			entity: req.config.entities.userPhotos,
+			galleriesUrl: req.config.apiUrl + 'users/' + req.params.user + '/galleries',
+			targetGallery: 'Profile Pictures'
+		}
 	};
 
 	res.type('application/json');
 
-	UploadHelper.upload(req, res, function(err, result) {
+	UploadHelper.upload(opts, function(err, result) {
 
 		if (err) {
 
+			if (err.statusCode && !err.body) {
+											
+				ErrorHelper.sendError(err.statusCode);
+
+			} else if (err.statusCode && err.body) {
+
+				res.type("application/json");
+				res.send(err.statusCode, err.body);
+
+			} else {
+
+				res.send(err);
+			}
+
 			winston.error(err);
-			res.send(err);
 
 		} else {
 
@@ -41,29 +58,45 @@ module.exports.uploadUserPicture = function(req, res) {
 
 module.exports.uploadBrandPicture = function(req, res) {
 
-	req.uploadTarget = {
+	var opts = {
 
-		file: {
-			name: req.files.image.name,
-			isFile: true,
-			file: req.files.image,
-			stream: fs.createReadStream(req.files.image.path),
-			size: req.files.image.size
-		},
-		objectId: req.params.brand,
-		entity: req.config.entities.brandProfiles,
-		galleriesUrl: req.config.apiUrl + 'brands/' + req.params.brand + '/galleries',
-		targetGallery: 'Profile Pictures'
+		config: req.config,
+		headers: req.headers,
+		uploadTarget: {
+
+			file: {
+				name: req.files.image.name,
+				isFile: true,
+				path: req.files.image.path
+			},
+			objectId: req.params.brand,
+			entity: req.config.entities.brandProfiles,
+			galleriesUrl: req.config.apiUrl + 'brands/' + req.params.brand + '/galleries',
+			targetGallery: 'Profile Pictures'
+		}
 	};
 
 	res.type('application/json');
 
-	UploadHelper.upload(req, res, function(err, result) {
+	UploadHelper.upload(opts, function(err, result) {
 
 		if (err) {
 
-			winston.error(err);
-			res.send(err);
+			if (err.statusCode && !err.body) {
+											
+				ErrorHelper.sendError(err.statusCode);
+
+			} else if (err.statusCode && err.body) {
+
+				res.type("application/json");
+				res.send(err.statusCode, err.body);
+
+			} else {
+
+				res.send(err);
+			}
+
+			winston.error(err);			
 
 		} else {
 
@@ -77,29 +110,45 @@ module.exports.uploadBrandPicture = function(req, res) {
 
 module.exports.uploadBrandBackground = function(req, res) {
 
-	req.uploadTarget = {
+	var opts = {
 
-		file: {
-			name: req.files.image.name,
-			isFile: true,
-			file: req.files.image,
-			stream: fs.createReadStream(req.files.image.path),
-			size: req.files.image.size
-		},
-		objectId: req.params.brand,
-		entity: req.config.entities.brandBackgrounds,
-		galleriesUrl: req.config.apiUrl + 'brands/' + req.params.brand + '/galleries',
-		targetGallery: 'Backgrounds'
+		config: req.config,
+		headers: req.headers,
+		uploadTarget: {
+
+			file: {
+				name: req.files.image.name,
+				isFile: true,
+				path: req.files.image.path
+			},
+			objectId: req.params.brand,
+			entity: req.config.entities.brandBackgrounds,
+			galleriesUrl: req.config.apiUrl + 'brands/' + req.params.brand + '/galleries',
+			targetGallery: 'Backgrounds'
+		}
 	};
 
 	res.type('application/json');
 
-	UploadHelper.upload(req, res, function(err, result) {
+	UploadHelper.upload(opts, function(err, result) {
 
 		if (err) {
 
+			if (err.statusCode && !err.body) {
+											
+				ErrorHelper.sendError(err.statusCode);
+
+			} else if (err.statusCode && err.body) {
+
+				res.type("application/json");
+				res.send(err.statusCode, err.body);
+
+			} else {
+
+				res.send(err);
+			}
+
 			winston.error(err);
-			res.send(err);
 
 		} else {
 
