@@ -70,6 +70,9 @@ module.exports = (function() {
 			
 			} else {
 
+				winston.info("Loaded %d galleries...", body.galleries.length);
+				console.log(util.inspect(body));
+
 				for(var i = 0; i < body.galleries.length; i++) {
 					if (body.galleries[i].title == opts.uploadTarget.targetGallery) {
 
