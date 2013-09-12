@@ -38,6 +38,9 @@ app.configure(function() {
 		winston.warning("Current Count: %d", ++counter);
 	});
 
+	orm.settings.set('connection.reconnect', true);
+	orm.settings.set('connection.pool', true);
+
 	app.use(orm.express(process.env.MYSQL_CONN_STR, models));
 
 	// Overload the res.send() function to handle custom logic
