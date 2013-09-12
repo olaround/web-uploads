@@ -17,7 +17,7 @@ var buildRequestHeaders = function(headers) {
 	if (headers.authorization) {
 		returnHeaders.authorization = headers.authorization;
 	}
-	
+
 	returnHeaders["x-olaround-debug-mode"] = returnHeaders.hasOwnProperty('x-olaround-debug-mode') ? returnHeaders["x-olaround-debug-mode"] : "Header";
 
 	return returnHeaders;
@@ -57,8 +57,13 @@ module.exports = (function() {
 					winston.error(err);
 				}
 
-				console.log(util.inspect(result));
-				console.log(util.inspect(body));
+				if (result) {
+					console.log(util.inspect(result));
+				}
+
+				if (body) {
+					console.log(util.inspect(body));
+				}
 
 				callback({statusCode: result.statusCode, endpoint: opts.uploadTarget.galleriesUrl, body: body});
 				return new Error(body);
