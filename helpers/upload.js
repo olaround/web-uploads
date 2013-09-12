@@ -6,10 +6,18 @@ var request = require('request'),
 
 var buildRequestHeaders = function(headers) {
 
-	return {
-		authorization: headers.authorization,
-		"x-olaround-debug-mode": headers['x-olaround-debug-mode'] || "Header"
-	};
+	var returnHeaders = {};
+
+	for (var header in headers) {
+		if (header.indexOf('x-olaround') > -1) {
+			returnHeaders[header] = headers[header];
+		}
+	}
+
+	returnHeaders.authorization = headers.authorization;
+	returnHeaders["x-olaround-debug-mode"] = returnHeaders.hasOwnProperty('x-olaround-debug-mode') ? returnHeaders["x-olaround-debug-mode"] : "Header";
+
+	return returnHeaders;
 }
 
 module.exports = (function() {
