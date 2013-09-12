@@ -14,7 +14,10 @@ var buildRequestHeaders = function(headers) {
 		}
 	}
 
-	returnHeaders.authorization = headers.authorization;
+	if (headers.authorization) {
+		returnHeaders.authorization = headers.authorization;
+	}
+	
 	returnHeaders["x-olaround-debug-mode"] = returnHeaders.hasOwnProperty('x-olaround-debug-mode') ? returnHeaders["x-olaround-debug-mode"] : "Header";
 
 	return returnHeaders;
