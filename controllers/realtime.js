@@ -15,7 +15,7 @@ module.exports.userUpdated = function(req, res) {
 		return;
 	}
 
-	var matchedUsers = [];
+	console.log(util.inspect(req.body, {colors: true, depth: 5}));
 
 	req.body.entry.forEach(function(fbUser, index) {
 		req.models.User.find({fb_user_id: fbUser.uid}, function(err, user) {
