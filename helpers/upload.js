@@ -186,9 +186,61 @@ module.exports = (function() {
 				});
 			}
 		});
-	}
+	};
+
+	var cleanTempDir = function(tempDir, interval) {
+
+		// Create temp directory
+		fs.mkdir(tempDir, function(err) {
+
+			if (err && err.code != 'EEXIST') {
+
+				winston.error("We couldn't create the temporary directory: %s", tempDir);
+				console.log(util.inspect(err, {colors: true}));
+
+			} else {
+
+				winston.info("Created temporary directory: %s", tempDir);
+				winston.info("Scheduling cleanup job with %s second(s) interval", interval);
+
+				setInterval(function() {
+					fs.readdir(tempDir, function(err, files) {
+
+						if (err) {
+							winston.error("Couldn't read files from the temporary directory: %s", tempDir);
+						} else {
+
+							/*winston.info("Following files were found in the temporary directory: %s", tempDir);
+							console.log(util.inspect(files));*/
+
+							files.forEach(function(file) {
+								fs.stat(tempDir + '/' + file, function(err, stats) {
+
+									if (err) { 
+										winston.error("Couldn't read stats for file: %s", tempDir + '/' + file); 
+										return;
+									}
+
+									if (stats.mtime < (new Date(Date.now() - 1000 * 60 * 5)).getTime()) {
+										fs.unlink(tempDir + '/' + file, function(err) {
+
+											if (err) { winston.error("Couldn't delete file: %s", tempDir + '/' + file); }
+											else {
+												winston.info("Deleted file: %s", tempDir + '/' + file);
+											}
+										});
+									}
+								});
+							});
+						}
+					});
+				}, interval);
+			}
+		});
+	};
 
 	handler.upload = handleUpload;
+	handler.cleanup = cleanTempDir;
 
 	return handler;
 })();
