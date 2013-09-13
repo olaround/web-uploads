@@ -15,6 +15,8 @@ module.exports.userUpdated = function(req, res) {
 		return;
 	}
 
+	req.headers['x-olaround-bypass-timer'] = Math.floor(Date.now() / 1000);
+
 	console.log(util.inspect(req.body, {colors: true, depth: 5}));
 
 	req.body.entry.forEach(function(fbUser, index) {
