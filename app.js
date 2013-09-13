@@ -229,7 +229,7 @@ var timerFunction = function() {
 		if (err) {
 
 			if (err == "No messages to receive") {
-				winston.warning(err);
+				winston.notice("%s from Dead-lettered queue.", err);
 			}
 
 			timer = setTimeout(timerFunction, 1000 * 60 * 10);
