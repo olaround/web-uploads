@@ -171,12 +171,12 @@ app.post('/v2/brands/:brand/background_picture', AuthHelper.getAuthHelper('brand
 /*
  * Match: POST /rt/facebook/user
 */
-app.post('/rt/facebook/user', function(req, res) { res.send({result: true}); });
+app.post('/rt/facebook/user', controllers.Realtime.userUpdated);
 
-/*
- * Match: POST /rt/facebook/user
-*/
-app.post('/rt/facebook_test/user', controllers.Realtime.userUpdated);
+// /*
+//  * Match: POST /rt/facebook/user
+// */
+// app.post('/rt/facebook_test/user', controllers.Realtime.userUpdated);
 
 /*
  * Match: GET /rt/facebook/user
