@@ -14,6 +14,7 @@ var
 	ErrorHelper = require('./helpers/error'),
 	UploadHelper = require('./helpers/upload'),
 	config = require('./config.json'),
+	azure = require('azure'),
 	counter = 0;
 
 // Create the app
@@ -209,3 +210,65 @@ http.createServer(app).listen(app.get('port'), function(){
 */
 
 UploadHelper.cleanup(app.get('tempDir'), 1000 * 60 * 30);
+
+/*
+ * Reset and Requeue Dead-lettered Messages
+ * ========================================
+ *
+ * Check all Dead-lettered messages in Processed Queue and requeue them for processing again.
+ *
+*/
+
+var sbService = azure.createServiceBusService();
+
+var timer = null, fastTimer = null;
+var timerFunction = function() {
+
+	sbService.receiveQueueMessage(config.processedQueue + '/$DeadLetterQueue', { isPeekLock: true }, function (err, lockedMessage) {
+			
+		if (err) {
+
+			if (err == "No messages to receive") {
+				winston.warning(err);
+			}
+
+			timer = setTimeout(timerFunction, 1000 * 60 * 10);
+
+		} else {
+
+			fastTimer = null;
+
+			// Message received and locked
+			winston.info("Dead-lettered message found. Requeuing...");
+
+			sbService.sendQueueMessage(config.processedQueue, {body: lockedMessage.body}, function(err) {
+
+				if (err) {
+
+					winston.error("Couldn't requeue the Dead-lettered message...");
+					console.log(util.inspect(err, {colors: true, depth: 5}));
+
+				} else {
+
+					sbService.deleteMessage(lockedMessage, function (err) {
+		
+						if (err) {
+							
+							winston.error("Couldn't delete requeued message from Dead-lettered queue.")
+							console.log(util.inspect(err, {colors: true, depth: 5}));
+						
+						} else {
+							
+							winston.info("Deleted requeued message from Dead-lettered queue.");
+						}
+					});
+				}
+			});
+
+			fastTimer = setTimeout(timerFunction, 1000 * 10);
+		}
+	});
+	
+};
+
+setTimeout(timerFunction, 10000);

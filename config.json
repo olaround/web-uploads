@@ -2,6 +2,7 @@
 	"apiUrl": "https://api.olaround.me/v2/",
 	"cdnUrl": "http://olrd.blob.core.windows.net/uploads/",
 	"topicName": "olrd-picsys",
+	"processedQueue": "olrd-picsys-processed",
 	"entities" : {
 		"userPhotos": "user_profile",
 		"brandBackgrounds": "brands_background",
