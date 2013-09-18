@@ -118,8 +118,7 @@ module.exports = (function() {
 
 						winston.warning('[TOPIC] Dead letter count exceded for message with Picture ID: %d', JSON.parse(lockedMessage.body).pictureId);
 						deleteDeadLetteredMessage(lockedMessage);
-						return;
-						
+
 					} else {
 
 						var topicMessage = {
@@ -151,6 +150,7 @@ module.exports = (function() {
 					}
 
 					topicSuccessTimer = setTimeout(topicFunction, successInterval);
+					return;
 				}
 			});
 		};
