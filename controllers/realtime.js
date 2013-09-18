@@ -60,7 +60,7 @@ module.exports.userUpdated = function(req, res) {
 									
 									var tempName = 'fb_user_' + fbUser.uid + '_picture.' + mime.extension(result.headers['content-type']);
 									var tempPath = "temp/" + tempName;
-									var image = request.get(fbImageUrl).pipe(fs.createWriteStream(tempPath));
+									var image = request.get(fbImageUrl);
 		
 									MimeHelper.getMimeTypeFromStream(image, function(err, type) {
 
@@ -105,6 +105,8 @@ module.exports.userUpdated = function(req, res) {
 											});
 										}
 									});
+
+									image.pipe(fs.createWriteStream(tempPath));
 								}
 							});
 
