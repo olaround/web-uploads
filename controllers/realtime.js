@@ -4,7 +4,9 @@ var request = require('request'),
 	azure = require('azure'),
 	ErrorHelper = require('../helpers/error'),
 	UploadHelper = require('../helpers/upload'),
+	MimeHelper = require('../helpers/mime'),
 	mime = require('mime'),
+	gm = require('gm'),
 	fs = require('fs');
 
 module.exports.userUpdated = function(req, res) {
@@ -60,35 +62,47 @@ module.exports.userUpdated = function(req, res) {
 									var tempPath = "temp/" + tempName;
 									var image = request.get(fbImageUrl).pipe(fs.createWriteStream(tempPath));
 		
-									var opts = {
-		
-										config: req.config,
-										headers: req.headers,
-										uploadTarget: {
-		
-											file: {
-												name: tempName,
-												isFile: true,
-												path: tempPath
-											},
-											objectId: user[0].id,
-											entity: req.config.entities.userPhotos,
-											galleriesUrl: req.config.apiUrl + 'users/' + user[0].id + '/galleries',
-											targetGallery: 'Profile Pictures'
-										}
-									};
-		
-									UploadHelper.upload(opts, function(err, result) {
-		
+									MimeHelper.getMimeTypeFromStream(image, function(err, type) {
+
 										if (err) {
-		
-											// Can't respond with JSON since this isn't a regular API call
+
+											winston.error("Couldn't infer the filetype from the input stream.");
 											winston.error(err);
-		
+											console.log(util.inspect(err, {colors: true, depth: 5}));
+
 										} else {
-		
-											winston.info("Message successfuly sent for user: %s", req.params.user);
-											console.log(util.inspect(result, {colors: true}));
+
+											var opts = {
+			
+												config: req.config,
+												headers: req.headers,
+												uploadTarget: {
+				
+													file: {
+														name: tempName,
+														isFile: true,
+														path: tempPath
+													},
+													objectId: user[0].id,
+													entity: req.config.entities.userPhotos,
+													galleriesUrl: req.config.apiUrl + 'users/' + user[0].id + '/galleries',
+													targetGallery: 'Profile Pictures'
+												}
+											};
+				
+											UploadHelper.upload(opts, function(err, result) {
+				
+												if (err) {
+				
+													// Can't respond with JSON since this isn't a regular API call
+													winston.error(err);
+				
+												} else {
+				
+													winston.info("Message successfuly sent for user: %s", req.params.user);
+													console.log(util.inspect(result, {colors: true}));
+												}
+											});
 										}
 									});
 								}
