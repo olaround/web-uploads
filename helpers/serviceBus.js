@@ -119,34 +119,36 @@ module.exports = (function() {
 						winston.warning('[TOPIC] Dead letter count exceded for message with Picture ID: %d', JSON.parse(lockedMessage.body).pictureId);
 						deleteDeadLetteredMessage(lockedMessage);
 						return;
+						
+					} else {
+
+						var topicMessage = {
+							body: lockedMessage.body,
+							customProperties: {
+								entity: lockedMessage.customProperties.entity,
+								deadlettercount: deadlettercount
+							}
+						};
+
+						/*console.log(util.inspect(lockedMessage, {colors: true, depth: 5}));
+						console.log(util.inspect(topicMessage, {colors: true, depth: 5}));*/
+
+						// Message received and locked
+						winston.info("[TOPIC] Dead-lettered topic message found. Requeuing...");
+
+						sbService.sendTopicMessage(topic, topicMessage, function(err) {
+
+							if (err) {
+
+								winston.error("[TOPIC] Couldn't requeue the Dead-lettered topic message...");
+								console.log(util.inspect(err, {colors: true, depth: 5}));
+
+							} else {
+
+								deleteDeadLetteredMessage(lockedMessage);
+							}
+						});
 					}
-
-					var topicMessage = {
-						body: lockedMessage.body,
-						customProperties: {
-							entity: lockedMessage.customProperties.entity,
-							deadlettercount: deadlettercount
-						}
-					};
-
-					/*console.log(util.inspect(lockedMessage, {colors: true, depth: 5}));
-					console.log(util.inspect(topicMessage, {colors: true, depth: 5}));*/
-
-					// Message received and locked
-					winston.info("[TOPIC] Dead-lettered topic message found. Requeuing...");
-
-					sbService.sendTopicMessage(topic, topicMessage, function(err) {
-
-						if (err) {
-
-							winston.error("[TOPIC] Couldn't requeue the Dead-lettered topic message...");
-							console.log(util.inspect(err, {colors: true, depth: 5}));
-
-						} else {
-
-							deleteDeadLetteredMessage(lockedMessage);
-						}
-					});
 
 					topicSuccessTimer = setTimeout(topicFunction, successInterval);
 				}
