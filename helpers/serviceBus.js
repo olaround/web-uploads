@@ -98,6 +98,29 @@ module.exports = (function() {
 						deadlettercount = 1;
 					}
 
+					var deleteDeadLetteredMessage = function(message) {
+
+						sbService.deleteMessage(message, function (err) {
+				
+							if (err) {
+								
+								winston.error("[TOPIC] Couldn't delete requeued message from Dead-lettered topic.")
+								console.log(util.inspect(err, {colors: true, depth: 5}));
+							
+							} else {
+								
+								winston.info("[TOPIC] Deleted requeued message from Dead-lettered topic.");
+							}
+						});
+					};
+
+					if (deadlettercount > 10) {
+
+						winston.warning('[TOPIC] Dead letter count exceded for message with Picture ID: %d', JSON.parse(lockedMessage.body).pictureId);
+						deleteDeadLetteredMessage(lockedMessage);
+						return;
+					}
+
 					var topicMessage = {
 						body: lockedMessage.body,
 						customProperties: {
@@ -106,8 +129,8 @@ module.exports = (function() {
 						}
 					};
 
-					console.log(util.inspect(lockedMessage, {colors: true, depth: 5}));
-					console.log(util.inspect(topicMessage, {colors: true, depth: 5}));
+					/*console.log(util.inspect(lockedMessage, {colors: true, depth: 5}));
+					console.log(util.inspect(topicMessage, {colors: true, depth: 5}));*/
 
 					// Message received and locked
 					winston.info("[TOPIC] Dead-lettered topic message found. Requeuing...");
@@ -121,18 +144,7 @@ module.exports = (function() {
 
 						} else {
 
-							sbService.deleteMessage(lockedMessage, function (err) {
-				
-								if (err) {
-									
-									winston.error("[TOPIC] Couldn't delete requeued message from Dead-lettered topic.")
-									console.log(util.inspect(err, {colors: true, depth: 5}));
-								
-								} else {
-									
-									winston.info("[TOPIC] Deleted requeued message from Dead-lettered topic.");
-								}
-							});
+							deleteDeadLetteredMessage(lockedMessage);
 						}
 					});
 
