@@ -35,7 +35,14 @@ module.exports = (function() {
 					// Message received and locked
 					winston.info("[QUEUE] Dead-lettered queue message found. Requeuing...");
 
-					sbService.sendQueueMessage(queue, {body: lockedMessage.body}, function(err) {
+					var queueMessage = {
+						body: lockedMessage.body,
+						customProperties: {
+							deadLetterCount: typeof lockedMessage.customProperties.deadLetterCount != 'undefined' ? parseInt(lockedMessage.customProperties.deadLetterCount) + 1 : 1
+						}
+					};
+
+					sbService.sendQueueMessage(queue, queueMessage, function(err) {
 
 						if (err) {
 
@@ -87,7 +94,8 @@ module.exports = (function() {
 					var topicMessage = {
 						body: lockedMessage.body,
 						customProperties: {
-							entity: lockedMessage.customProperties.entity
+							entity: lockedMessage.customProperties.entity,
+							deadLetterCount: typeof lockedMessage.customProperties.deadLetterCount != 'undefined' ? parseInt(lockedMessage.customProperties.deadLetterCount) + 1 : 1
 						}
 					};
 
