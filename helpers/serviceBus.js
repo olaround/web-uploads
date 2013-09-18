@@ -38,7 +38,7 @@ module.exports = (function() {
 					var queueMessage = {
 						body: lockedMessage.body,
 						customProperties: {
-							deadLetterCount: typeof lockedMessage.customProperties.deadLetterCount != 'undefined' ? parseInt(lockedMessage.customProperties.deadLetterCount) + 1 : 1
+							deadlettercount: typeof lockedMessage.customProperties.deadlettercount != 'undefined' ? parseInt(lockedMessage.customProperties.deadlettercount) + 1 : 1
 						}
 					};
 
@@ -91,13 +91,23 @@ module.exports = (function() {
 				} else {
 
 					topicSuccessTimer = null;
+
+					if (lockedMessage.customProperties.deadlettercount) {
+						deadlettercount = lockedMessage.customProperties.deadlettercount + 1;
+					} else {
+						deadlettercount = 1;
+					}
+
 					var topicMessage = {
 						body: lockedMessage.body,
 						customProperties: {
 							entity: lockedMessage.customProperties.entity,
-							deadLetterCount: typeof lockedMessage.customProperties.deadLetterCount != 'undefined' ? parseInt(lockedMessage.customProperties.deadLetterCount) + 1 : 1
+							deadlettercount: deadlettercount
 						}
 					};
+
+					console.log(util.inspect(lockedMessage, {colors: true, depth: 5}));
+					console.log(util.inspect(topicMessage, {colors: true, depth: 5}));
 
 					// Message received and locked
 					winston.info("[TOPIC] Dead-lettered topic message found. Requeuing...");
