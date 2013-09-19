@@ -31,6 +31,23 @@ app.configure(function() {
 	app.use(express.logger('dev'));
 	app.use(express.compress());
 	app.use(express.methodOverride());
+
+	app.use(function(req, res, next) {
+
+		res.header('Access-Control-Allow-Origin', '*');
+		res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,HEAD,OPTIONS');
+		res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Olaround-Debug-Mode');
+		res.header('Access-Control-Expose-Headers', 'X-Olaround-Debug-Mode, X-Olaround-Request-Start-Timestamp, X-Olaround-Request-End-Timestamp, X-Olaround-Request-Time, X-Olaround-Request-Method, X-Olaround-Request-Result, X-Olaround-Request-Endpoint');
+
+		// intercept OPTIONS method
+		if ('OPTIONS' == req.method) {
+			res.send(200);
+		}
+		else {
+			next();
+		}
+	});
+
 	app.use(express.json());
 	app.use(express.urlencoded());
 
