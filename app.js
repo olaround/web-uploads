@@ -16,6 +16,7 @@ var
 	ServiceBusHelper = require('./helpers/serviceBus'),
 	config = require('./config.json'),
 	azure = require('azure'),
+	cors = require('cors'),
 	counter = 0;
 
 // Create the app
@@ -30,6 +31,12 @@ app.configure(function() {
 	app.set('tempDir', "./temp");
 	app.use(express.logger('dev'));
 	app.use(express.compress());
+
+	app.use(cors({
+		methods: ['GET', 'POST', 'DELETE', 'HEAD', 'PUT', 'OPTIONS'],
+		headers: ['X-Olaround-Debug-Mode', 'Authorization']
+	}));
+
 	app.use(express.methodOverride());
 	app.use(express.json());
 	app.use(express.urlencoded());
