@@ -304,7 +304,7 @@ setTimeout(function() { ServiceBusHelper.handleDeadLetterTopic(config.topicName,
 
 	var j = 0, 
 		usersPerRequest = 10, 
-		timerIntervalInSecs = 10,
+		timerIntervalInSecs = 30,
 		len = Math.ceil(ids.length / usersPerRequest);
 
 	var timerFunc = function() {
