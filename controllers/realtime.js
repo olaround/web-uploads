@@ -99,7 +99,7 @@ module.exports.userUpdated = function(req, res) {
 				
 												} else {
 				
-													winston.info("Message successfuly sent for user: %s", req.params.user);
+													winston.info("Message successfuly sent for user: %s", user[0].id);
 													console.log(util.inspect(result, {colors: true}));
 												}
 											});
