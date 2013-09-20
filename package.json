@@ -39,13 +39,10 @@
     "azure": "0.7.x",
     "mysql": "2.0.0-alpha8",
     "request": "2.27.x",
-    "colors": "0.6.x",
     "winston": "0.7.x",
     "express-winston": "0.2.x",
     "orm": "2.1.x",
-    "mime": "1.2.x",
-    "gm": "1.13.x",
-    "cors": "1.0.x"
+    "mime": "1.2.x"
   },
   "readmeFilename": "README.md"
 }
