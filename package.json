@@ -41,8 +41,7 @@
     "request": "2.27.x",
     "winston": "0.7.x",
     "express-winston": "0.2.x",
-    "orm": "2.1.x",
-    "mime": "1.2.x"
+    "orm": "2.1.x"
   },
   "readmeFilename": "README.md"
 }

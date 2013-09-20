@@ -5,8 +5,6 @@ var request = require('request'),
 	ErrorHelper = require('../helpers/error'),
 	UploadHelper = require('../helpers/upload'),
 	MimeHelper = require('../helpers/mime'),
-	mime = require('mime'),
-	gm = require('gm'),
 	fs = require('fs');
 
 module.exports.userUpdated = function(req, res) {
@@ -58,8 +56,6 @@ module.exports.userUpdated = function(req, res) {
 		
 								} else {
 									
-									var tempName = 'fb_user_' + fbUser.uid + '_picture.' + mime.extension(result.headers['content-type']);
-									var tempPath = "temp/" + tempName;
 									var image = request.get(fbImageUrl);
 		
 									MimeHelper.getMimeTypeFromStream(image, function(err, type) {
@@ -71,6 +67,9 @@ module.exports.userUpdated = function(req, res) {
 											console.log(util.inspect(err, {colors: true, depth: 5}));
 
 										} else {
+
+											var tempName = 'fb_user_' + fbUser.uid + '_picture' + type.ext;
+											var tempPath = "temp/" + tempName;
 
 											var opts = {
 			

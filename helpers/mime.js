@@ -6,18 +6,9 @@ module.exports = (function() {
 	var mime = {};
 
 	var mimeMap = {
-		JPEG : {
-			type: 'image/jpeg',
-			ext: '.jpg'
-		},
-		GIF : {
-			type: 'image/gif',
-			ext: '.gif'
-		},
-		PNG : {
-			type: 'image/png',
-			ext: '.png'
-		}
+		'.jpg': 'image/jpeg',
+		'.gif': 'image/gif',
+		'.png': 'image/png'
 	};
 
 	function dumpObject(obj, depth) {
@@ -44,17 +35,29 @@ module.exports = (function() {
 
 				case '47494638':
 
-					type = mimeMap['GIF'];
+					type = { 
+						type: mimeMap['.gif'],
+						ext: '.gif'
+					};
+
 					break;
 
 				case 'ffd8ffe0':
 
-					type = mimeMap['JPEG'];
+					type = { 
+						type: mimeMap['.jpg'],
+						ext: '.jpg'
+					};
+
 					break;
 
 				case '89504e47':
 
-					type = mimeMap['PNG'];
+					type = { 
+						type: mimeMap['.png'],
+						ext: '.png'
+					};
+
 					break;
 
 				default:
@@ -95,6 +98,14 @@ module.exports = (function() {
 			}
 		});
 	};
+
+	mime.getExtFromContentType = function(contentType) {
+		for(var ext in mimeMap) {
+			if (mimeMap[ext] == contentType.toLowerCase()) {
+				return ext;
+			}
+		}
+	}
 
 	return mime;
 
