@@ -7,7 +7,7 @@ var request = require('request'),
 	MimeHelper = require('../helpers/mime'),
 	fs = require('fs');
 
-module.exports.userUpdated = function(req, res) {
+module.exports.userUpdated = function(req, res, cb) {
 
 	if (typeof req.body == "undefined" || !req.body || req.body.object != "user" || typeof req.body.entry == "undefined") {
 
@@ -18,6 +18,16 @@ module.exports.userUpdated = function(req, res) {
 	req.headers['x-olaround-bypass-timer'] = Math.floor(Date.now() / 1000);
 
 	console.log(util.inspect(req.body, {colors: true, depth: 5}));
+
+	var processedEntries = 0, entryLength = 0;
+	
+	var handleCallback = function() {
+		if (typeof cb != 'undefined' && typeof cb == 'function') {
+			if (++processedEntries >= entryLength) {
+				cb(true);
+			}
+		}
+	};
 
 	req.body.entry.forEach(function(fbUser, index) {
 		req.models.User.find({fb_user_id: fbUser.uid}, function(err, user) {
@@ -39,6 +49,7 @@ module.exports.userUpdated = function(req, res) {
 
 						case "picture" :
 
+							entryLength++;
 							var fbImageUrl = 'https://graph.facebook.com/' + fbUser.uid + '/picture?width=512';
 					
 							request.head(fbImageUrl, function(err, result) {
@@ -50,12 +61,16 @@ module.exports.userUpdated = function(req, res) {
 									}
 		
 									console.log(util.inspect(result));
+
+									handleCallback();
 									
 									// Can't respond with JSON since this isn't a regular API call
 									return new Error(result);
 		
 								} else {
 									
+									var tempName = 'fb_user_' + fbUser.uid + '_picture' + MimeHelper.getExtFromContentType(result.headers['content-type']);
+									var tempPath = "temp/" + tempName;
 									var image = request.get(fbImageUrl);
 		
 									MimeHelper.getMimeTypeFromStream(image, function(err, type) {
@@ -66,10 +81,9 @@ module.exports.userUpdated = function(req, res) {
 											winston.error(err);
 											console.log(util.inspect(err, {colors: true, depth: 5}));
 
-										} else {
+											handleCallback();
 
-											var tempName = 'fb_user_' + fbUser.uid + '_picture' + type.ext;
-											var tempPath = "temp/" + tempName;
+										} else {
 
 											var opts = {
 			
@@ -95,11 +109,15 @@ module.exports.userUpdated = function(req, res) {
 				
 													// Can't respond with JSON since this isn't a regular API call
 													winston.error(err);
+
+													handleCallback();
 				
 												} else {
 				
 													winston.info("Message successfuly sent for user: %s", user[0].id);
 													console.log(util.inspect(result, {colors: true}));
+
+													handleCallback();
 												}
 											});
 										}

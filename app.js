@@ -250,3 +250,84 @@ setTimeout(function() { ServiceBusHelper.handleDeadLetterTopic(config.topicName,
  * Note: This code is temporary and will be removed once the migration is done.
  *
 */
+
+(function() {
+
+	var sbService = azure.createServiceBusService();
+
+	function receiveMessage() {
+
+		sbService.receiveQueueMessage('olrd-pending-users', { isPeekLock: true }, function (err, lockedMessage) {
+			
+			if (err) {
+
+				if (err == "No messages to receive") {
+					winston.notice("[USERS] %s", err);
+				} else {
+
+					winston.error("[USERS] We couldn't read the message from the Service Bus.");
+					console.log(util.inspect(err, {colors: true, depth: 5}));
+				}
+
+				timer = setTimeout(receiveMessage, 30000);
+
+			} else {
+
+				orm.connect(process.env.MYSQL_CONN_STR, function(err, db) {
+
+					if (err) {
+
+						winston.error("[USERS] Couldn't connect to the database...");
+						winston.error(err);
+
+						timer = setTimeout(receiveMessage, 30000);
+
+					} else {
+
+						var modelDefs = {};
+						models.define(db, modelDefs);
+
+						// Message received and locked
+						var req = {
+							body: JSON.parse(lockedMessage.body),
+							models: modelDefs,
+							config: config,
+							headers: {
+								'x-olaround-served-with': 'node.js/uploads'
+							}
+						}
+
+						var res = {
+							type: function(contentType) {
+								return;
+							},
+
+							send: function(data) {
+								return;
+							}
+						}
+
+						controllers.Realtime.userUpdated(req, res, function(res) {
+							if (res) {
+								
+								sbService.deleteMessage(lockedMessage, function (err) {
+				
+									if (err) {
+										
+										winston.error("[USERS] Couldn't delete processed message from user profile queue.");
+										winston.error(err);							
+									}
+
+									timer = setTimeout(receiveMessage, 30000);
+								});
+							}
+						});
+					}
+				});
+			}
+		});
+	}
+
+	var timer = setTimeout(receiveMessage, 30000);
+
+})();
