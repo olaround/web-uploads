@@ -44,6 +44,8 @@ module.exports = (function() {
 
 					sbService.sendQueueMessage(queue, queueMessage, function(err) {
 
+						queueMessage = null;
+
 						if (err) {
 
 							winston.error("[QUEUE] Couldn't requeue the Dead-lettered queue message...");
@@ -52,6 +54,8 @@ module.exports = (function() {
 						} else {
 
 							sbService.deleteMessage(lockedMessage, function (err) {
+
+								lockedMessage = null;
 				
 								if (err) {
 									
@@ -76,6 +80,22 @@ module.exports = (function() {
 
 	topicTimerFunction = function(topic, subscription, successInterval, retryInterval) {
 
+		var deleteDeadLetteredMessage = function(message) {
+
+			sbService.deleteMessage(message, function (err) {
+	
+				if (err) {
+					
+					winston.error("[TOPIC] Couldn't delete requeued message from Dead-lettered topic.")
+					console.log(util.inspect(err, {colors: true, depth: 5}));
+				
+				} else {
+					
+					winston.info("[TOPIC] Deleted requeued message from Dead-lettered topic.");
+				}
+			});
+		};
+
 		var topicFunction = function() {
 
 			sbService.receiveSubscriptionMessage(topic, subscription + '/$DeadLetterQueue', { isPeekLock: true }, function (err, lockedMessage) {
@@ -97,22 +117,6 @@ module.exports = (function() {
 					} else {
 						deadlettercount = 1;
 					}
-
-					var deleteDeadLetteredMessage = function(message) {
-
-						sbService.deleteMessage(message, function (err) {
-				
-							if (err) {
-								
-								winston.error("[TOPIC] Couldn't delete requeued message from Dead-lettered topic.")
-								console.log(util.inspect(err, {colors: true, depth: 5}));
-							
-							} else {
-								
-								winston.info("[TOPIC] Deleted requeued message from Dead-lettered topic.");
-							}
-						});
-					};
 
 					if (deadlettercount > 10) {
 
@@ -136,6 +140,8 @@ module.exports = (function() {
 						winston.info("[TOPIC] Dead-lettered topic message found. Requeuing...");
 
 						sbService.sendTopicMessage(topic, topicMessage, function(err) {
+
+							topicMessage = null;
 
 							if (err) {
 
