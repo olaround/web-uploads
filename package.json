@@ -3,7 +3,7 @@
   "description": "A simple uploads server based on Node.js to handle all the Olaround related Uploads and Real-time Facebook Requests.",
   "version": "0.1.0",
   "engines": {
-    "node": ">= 0.10.5"
+    "node": ">= 0.10.18"
   },
   "author": {
     "name": "Uzair Sajid",
