@@ -72,59 +72,55 @@ module.exports.userUpdated = function(req, res, cb) {
 									var tempName = 'fb_user_' + fbUser.uid + '_picture' + MimeHelper.getExtFromContentType(result.headers['content-type']);
 									var tempPath = "temp/" + tempName;
 									var image = request.get(fbImageUrl);
-
-									image.on('end', function() {
 		
-										MimeHelper.getMimeTypeFromFile(tempPath, function(err, type) {
+									MimeHelper.getMimeTypeFromStream(image, function(err, type) {
 
-											if (err) {
+										if (err) {
 
-												winston.error("Couldn't infer the filetype from the input stream for user: %s", fbUser.uid);
-												winston.error(err);
-												console.log(util.inspect(err, {colors: true, depth: 5}));
+											winston.error("Couldn't infer the filetype from the input stream for user: %s", fbUser.uid);
+											winston.error(err);
+											console.log(util.inspect(err, {colors: true, depth: 5}));
 
-												handleCallback();
+											handleCallback();
 
-											} else {
+										} else {
 
-												var opts = {
+											var opts = {
+			
+												config: req.config,
+												headers: req.headers,
+												uploadTarget: {
 				
-													config: req.config,
-													headers: req.headers,
-													uploadTarget: {
-					
-														file: {
-															name: tempName,
-															isFile: true,
-															path: tempPath
-														},
-														objectId: user[0].id,
-														entity: req.config.entities.userPhotos,
-														galleriesUrl: req.config.apiUrl + 'users/' + user[0].id + '/galleries',
-														targetGallery: 'Profile Pictures'
-													}
-												};
-					
-												UploadHelper.upload(opts, function(err, result) {
-					
-													if (err) {
-					
-														// Can't respond with JSON since this isn't a regular API call
-														winston.error(err);
+													file: {
+														name: tempName,
+														isFile: true,
+														path: tempPath
+													},
+													objectId: user[0].id,
+													entity: req.config.entities.userPhotos,
+													galleriesUrl: req.config.apiUrl + 'users/' + user[0].id + '/galleries',
+													targetGallery: 'Profile Pictures'
+												}
+											};
+				
+											UploadHelper.upload(opts, function(err, result) {
+				
+												if (err) {
+				
+													// Can't respond with JSON since this isn't a regular API call
+													winston.error(err);
 
-														handleCallback();
-					
-													} else {
-					
-														winston.info("Message successfuly sent for user: %s", user[0].id);
-														console.log(util.inspect(result, {colors: true}));
+													handleCallback();
+				
+												} else {
+				
+													winston.info("Message successfuly sent for user: %s", user[0].id);
+													console.log(util.inspect(result, {colors: true}));
 
-														handleCallback();
-													}
-												});
-											}
-										});
-
+													handleCallback();
+												}
+											});
+										}
 									});
 
 									image.pipe(fs.createWriteStream(tempPath));
