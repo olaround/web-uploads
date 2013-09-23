@@ -29,11 +29,12 @@ module.exports = (function() {
 
 			if (count > 0) return;
 
-			var type = null;
+			var type = null,
+				magicBytes = buffer.toString('hex', 0, 3).toLowerCase();
 
-			switch (buffer.toString('hex', 0, 4).toLowerCase()) {
+			switch (magicBytes) {
 
-				case '47494638':
+				case '474946':
 
 					type = { 
 						type: mimeMap['.gif'],
@@ -42,7 +43,7 @@ module.exports = (function() {
 
 					break;
 
-				case 'ffd8ffe0':
+				case 'ffd8ff':
 
 					type = { 
 						type: mimeMap['.jpg'],
@@ -51,7 +52,7 @@ module.exports = (function() {
 
 					break;
 
-				case '89504e47':
+				case '89504e':
 
 					type = { 
 						type: mimeMap['.png'],
@@ -71,10 +72,10 @@ module.exports = (function() {
 			
 			if (typeof type == 'undefined') {
 
-				cb(new Error({
-					error: 'unknown_type',
-					errorDescription: "Either the stream doesn't contain a known mime type or the start was already emitted."
-				}));
+				var error = new Error("unknown_type");
+				error.description = "Either the stream doesn't contain a known mime type or the start was already emitted.";
+				error.magicBytes = magicBytes;
+				cb(error);
 
 			} else {
 				cb(null, type);
