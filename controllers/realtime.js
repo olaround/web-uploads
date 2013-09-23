@@ -60,7 +60,9 @@ module.exports.userUpdated = function(req, res, cb) {
 										winston.error(err);
 									}
 		
-									console.log(util.inspect(result));
+									if (result.statusCode != 404) {
+										console.log(util.inspect(result, {colors: true, depth: 5}));
+									}
 
 									handleCallback();
 									
