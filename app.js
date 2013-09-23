@@ -238,6 +238,7 @@ UploadHelper.cleanup(app.get('tempDir'), 1000 * 60 * 30);
 */
 
 setTimeout(function() { ServiceBusHelper.handleDeadLetterQueue(config.processedQueue, 1000 * 5, 1000 * 60 * 10) }, 10000);
+setTimeout(function() { ServiceBusHelper.handleDeadLetterQueue('olrd-pending-users', 1000 * 5, 1000 * 60 * 10) }, 10000);
 setTimeout(function() { ServiceBusHelper.handleDeadLetterTopic(config.topicName, "ignored", 1000 * 5, 1000 * 60 * 10) }, 10000);
 
 
