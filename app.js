@@ -270,7 +270,7 @@ setTimeout(function() { ServiceBusHelper.handleDeadLetterTopic(config.topicName,
 					console.log(util.inspect(err, {colors: true, depth: 5}));
 				}
 
-				timer = setTimeout(receiveMessage, 60000);
+				timer = setTimeout(receiveMessage, 30000);
 
 			} else {
 
@@ -281,7 +281,7 @@ setTimeout(function() { ServiceBusHelper.handleDeadLetterTopic(config.topicName,
 						winston.error("[USERS] Couldn't connect to the database...");
 						winston.error(err);
 
-						timer = setTimeout(receiveMessage, 60000);
+						timer = setTimeout(receiveMessage, 30000);
 
 					} else {
 
@@ -319,7 +319,7 @@ setTimeout(function() { ServiceBusHelper.handleDeadLetterTopic(config.topicName,
 										winston.error(err);							
 									}
 
-									timer = setTimeout(receiveMessage, 60000);
+									timer = setTimeout(receiveMessage, 30000);
 								});
 							}
 						});
@@ -329,6 +329,6 @@ setTimeout(function() { ServiceBusHelper.handleDeadLetterTopic(config.topicName,
 		});
 	}
 
-	var timer = setTimeout(receiveMessage, 60000);
+	var timer = setTimeout(receiveMessage, 30000);
 
 })();
