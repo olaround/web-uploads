@@ -17,3 +17,6 @@ temp
 npm-debug.log
 start.cmd
 test.js
+userPhoto.js
+fb_user_ids.json
+fb_user_ids_missing.json
