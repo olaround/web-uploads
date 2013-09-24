@@ -1,7 +1,7 @@
 {
   "name": "olrd-uploads",
   "description": "A simple uploads server based on Node.js to handle all the Olaround related Uploads and Real-time Facebook Requests.",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "engines": {
     "node": ">= 0.10.18"
   },
