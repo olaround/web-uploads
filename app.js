@@ -212,6 +212,14 @@ app.get('/rt/facebook/user', function(req, res) {
 	}
 });
 
+app.post('/rt/test', function(req, res) {
+
+	res.send({
+		result: true,
+		date: (new Date()).toString()
+	});
+});
+
 
 // Start the Server
 http.createServer(app).listen(app.get('port'), function(){
