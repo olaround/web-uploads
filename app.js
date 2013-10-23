@@ -216,11 +216,11 @@ app.post('/rt/test', function(req, res) {
 
 	var data = {
 		result: true,
-		date: (new Date()).toString(),
+		date: (new Date()).toString()
 	};
 
-	if (req.params) {
-		data.params = req.params;
+	if (req.body) {
+		data.params = req.body;
 	}
 
 	res.send(data);
