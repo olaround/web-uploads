@@ -216,7 +216,8 @@ app.post('/rt/test', function(req, res) {
 
 	res.send({
 		result: true,
-		date: (new Date()).toString()
+		date: (new Date()).toString(),
+		params: req.params || null
 	});
 });
 
