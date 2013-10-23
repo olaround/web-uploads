@@ -214,11 +214,16 @@ app.get('/rt/facebook/user', function(req, res) {
 
 app.post('/rt/test', function(req, res) {
 
-	res.send({
+	var data = {
 		result: true,
 		date: (new Date()).toString(),
-		params: req.params || null
-	});
+	};
+
+	if (req.params) {
+		data.params = req.params;
+	}
+
+	res.send(data);
 });
 
 
