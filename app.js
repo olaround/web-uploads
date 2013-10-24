@@ -254,6 +254,24 @@ UploadHelper.cleanup(app.get('tempDir'), 1000 * 60 * 30);
 setTimeout(function() { ServiceBusHelper.handleDeadLetterQueue(config.processedQueue, 1000 * 5, 1000 * 60 * 10) }, 10000);
 setTimeout(function() { ServiceBusHelper.handleDeadLetterTopic(config.topicName, "ignored", 1000 * 5, 1000 * 60 * 10) }, 10000);
 
+/*
+ * Ping Olaround Scheduler to keep it online
+ * =========================================
+ *
+ * Ping the olrd-scheduler service to keep Azure Websites from shutting down the service.
+ *
+*/
+
+setTimeout(function() { 
+
+	request.get('http://olrd-scheduler.azurewebsites.net/', function(err, result, body) { 
+		
+		winston.info("Pinging Olaround Scheduler to keep it alive.");
+		winston.info(body);
+	}); 
+
+}, 10 * 60 * 1000);
+
 
 /*
  * Pull all the images for reigstered users
