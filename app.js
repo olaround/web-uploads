@@ -262,10 +262,10 @@ setTimeout(function() { ServiceBusHelper.handleDeadLetterTopic(config.topicName,
  *
 */
 
-setTimeout(function() { 
+setInterval(function() { 
 
 	request.get('http://olrd-scheduler.azurewebsites.net/', function(err, result, body) { 
-		
+
 		winston.info("Pinging Olaround Scheduler to keep it alive.");
 		winston.info(body);
 	}); 
