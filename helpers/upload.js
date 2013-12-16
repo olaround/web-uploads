@@ -78,13 +78,14 @@ module.exports = (function() {
 
 						messageData.containerName = body.galleries[i].container_name;
 						messageData.galleryId = body.galleries[i].id;
+						break;
 					}
 				}
 
 				if (typeof messageData.containerName == "undefined" || typeof messageData.galleryId == "undefined") {
 
 					callback({statusCode: 404, endpoint: opts.uploadTarget.galleriesUrl});
-					return new Error("We couldn't find the Profile Pictures gallery for %s: %s", opts.uploadTarget.entity, opts.uploadTarget.objectId);
+					return new Error("We couldn't find the %s gallery for %s: %s", opts.uploadTarget.targetGallery, opts.uploadTarget.entity, opts.uploadTarget.objectId);
 				}
 
 				var blobService = azure.createBlobService();
@@ -121,6 +122,8 @@ module.exports = (function() {
 						};
 						
 						request.post(requestOpts, function(err, updateResult, updateBody) {
+
+							console.log(updateBody);
 
 							updateBody = JSON.parse(updateBody);
 

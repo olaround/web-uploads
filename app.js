@@ -61,7 +61,7 @@ app.configure(function() {
 	orm.settings.set('connection.reconnect', true);
 	orm.settings.set('connection.pool', true);
 
-	app.use(orm.express(process.env.MYSQL_CONN_STR, models));
+	//app.use(orm.express(process.env.MYSQL_CONN_STR, models));
 
 	// Overload the res.send() function to handle custom logic
 	app.use(function(req, res, next) {
@@ -85,7 +85,6 @@ app.configure(function() {
 
 		next();
 	});
-
 
 	uploadMiddleware = [
 		express.multipart({keepExtensions: true, uploadDir: app.get('tempDir')}),
@@ -187,6 +186,21 @@ app.post('/v2/brands/:brand/picture', AuthHelper.getAuthHelper('brand'), uploadM
  * Match: POST /brands/:brand/background_picture
 */
 app.post('/v2/brands/:brand/background_picture', AuthHelper.getAuthHelper('brand'), uploadMiddleware, controllers.Uploads.uploadBrandBackground);
+
+/*
+ * Match: POST /brands/:brand/brandcasts/:brandcast/picture
+*/
+app.post('/v2/brands/:brand/brandcasts/:brandcast/picture', AuthHelper.getAuthHelper('brand'), uploadMiddleware, controllers.Uploads.uploadBrandcastPicture);
+
+/*
+ * Match: POST /brands/:brand/menu/categories/:category/picture
+*/
+app.post('/v2/brands/:brand/menu/categories/:category/picture', AuthHelper.getAuthHelper('brand'), uploadMiddleware, controllers.Uploads.uploadMenuCategoryPicture);
+
+/*
+ * Match: POST /brands/:brand/menu/categories/:category/items/:item/picture
+*/
+app.post('/v2/brands/:brand/menu/categories/:category/items/:item/picture', AuthHelper.getAuthHelper('brand'), uploadMiddleware, controllers.Uploads.uploadMenuItemPicture);
 
 /*
  * Match: POST /rt/facebook/user

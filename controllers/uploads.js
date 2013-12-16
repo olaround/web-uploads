@@ -159,3 +159,111 @@ module.exports.uploadBrandBackground = function(req, res) {
 		}
 	});	
 }
+
+module.exports.uploadBrandcastPicture = function(req, res) {
+
+	var opts = {
+
+		config: req.config,
+		headers: req.headers,
+		uploadTarget: {
+
+			file: {
+				name: req.files.image.name,
+				isFile: true,
+				path: req.files.image.path
+			},
+			objectId: req.params.brandcast,
+			entity: req.config.entities.brandSnapshots,
+			galleriesUrl: req.config.apiUrl + 'brands/' + req.params.brand + '/galleries',
+			targetGallery: 'Snapshots'
+		}
+	};
+
+	res.type('application/json');
+
+	UploadHelper.upload(opts, function(err, result) {
+
+		if (err) {
+
+			if (err.statusCode && !err.body) {
+											
+				ErrorHelper.sendError(err.statusCode);
+
+			} else if (err.statusCode && err.body) {
+
+				res.type("application/json");
+				res.send(err.statusCode, err.body);
+
+			} else {
+
+				res.send(err);
+			}
+
+			winston.error(err);			
+
+		} else {
+
+			winston.info("Message successfuly sent for brandcast: %s", req.params.brand);
+			console.log(util.inspect(result, {colors: true}));
+
+			res.send(result);
+		}
+	});
+}
+
+module.exports.uploadMenuCategoryPicture = function(req, res) {
+
+	var opts = {
+
+		config: req.config,
+		headers: req.headers,
+		uploadTarget: {
+
+			file: {
+				name: req.files.image.name,
+				isFile: true,
+				path: req.files.image.path
+			},
+			objectId: req.params.category,
+			entity: req.config.entities.menuCategories,
+			galleriesUrl: req.config.apiUrl + 'brands/' + req.params.brand + '/menu/categories/' + req.params.category,
+			targetGallery: 'Snapshots'
+		}
+	};
+
+	res.type('application/json');
+
+	UploadHelper.upload(opts, function(err, result) {
+
+		if (err) {
+
+			if (err.statusCode && !err.body) {
+											
+				ErrorHelper.sendError(err.statusCode);
+
+			} else if (err.statusCode && err.body) {
+
+				res.type("application/json");
+				res.send(err.statusCode, err.body);
+
+			} else {
+
+				res.send(err);
+			}
+
+			winston.error(err);			
+
+		} else {
+
+			winston.info("Message successfuly sent for brandcast: %s", req.params.brand);
+			console.log(util.inspect(result, {colors: true}));
+
+			res.send(result);
+		}
+	});
+};
+
+module.exports.uploadMenuItemPicture = function(req, res) {
+
+};
