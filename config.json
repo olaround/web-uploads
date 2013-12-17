@@ -1,5 +1,5 @@
 {
-	"apiUrl": "http://dev.olaround.me/v2/",
+	"apiUrl": "https://api.olaround.me/v2/",
 	"cdnUrl": "http://olrd.blob.core.windows.net/uploads/",
 	"topicName": "olrd-picsys",
 	"processedQueue": "olrd-picsys-processed",
