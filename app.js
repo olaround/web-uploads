@@ -61,7 +61,7 @@ app.configure(function() {
 	orm.settings.set('connection.reconnect', true);
 	orm.settings.set('connection.pool', true);
 
-	//app.use(orm.express(process.env.MYSQL_CONN_STR, models));
+	app.use(orm.express(process.env.MYSQL_CONN_STR, models));
 
 	// Overload the res.send() function to handle custom logic
 	app.use(function(req, res, next) {
