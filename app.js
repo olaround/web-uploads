@@ -61,7 +61,7 @@ app.configure(function() {
 	orm.settings.set('connection.reconnect', true);
 	orm.settings.set('connection.pool', true);
 
-	app.use(orm.express(process.env.MYSQL_CONN_STR, models));
+	//app.use(orm.express(process.env.MYSQL_CONN_STR, models));
 
 	// Overload the res.send() function to handle custom logic
 	app.use(function(req, res, next) {
@@ -152,7 +152,13 @@ app.configure('production', function() {
 		} else {
 
 			// Setup Winston to use File Logging
-			winston.add(winston.transports.File, { filename: "./logs/node-execution-log.txt", timestamp: true, level: 'crit' });
+			winston.add(winston.transports.DailyRotateFile, { 
+				maxSize: 1 * 1024 * 1024,
+				filename: "./logs/node-execution-log.txt", 
+				timestamp: true, 
+				level: 'crit' 
+			});
+
 			winston.remove(winston.transports.Console);
 			winston.add(winston.transports.Console, { colorize: true, timestamp: true, level: 'crit' });
 

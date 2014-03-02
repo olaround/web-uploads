@@ -227,8 +227,8 @@ module.exports.uploadMenuCategoryPicture = function(req, res) {
 			},
 			objectId: req.params.category,
 			entity: req.config.entities.menuCategories,
-			galleriesUrl: req.config.apiUrl + 'brands/' + req.params.brand + '/menu/categories/' + req.params.category,
-			targetGallery: 'Snapshots'
+			galleriesUrl: req.config.apiUrl + 'brands/' + req.params.brand + '/menu/categories/' + req.params.category + '/galleries',
+			targetGallery: 'Profile Pictures'
 		}
 	};
 
@@ -256,7 +256,7 @@ module.exports.uploadMenuCategoryPicture = function(req, res) {
 
 		} else {
 
-			winston.info("Message successfuly sent for brandcast: %s", req.params.brand);
+			winston.info("Message successfuly sent for menus_category: %s", req.params.brand);
 			console.log(util.inspect(result, {colors: true}));
 
 			res.send(result);
@@ -266,4 +266,52 @@ module.exports.uploadMenuCategoryPicture = function(req, res) {
 
 module.exports.uploadMenuItemPicture = function(req, res) {
 
+	var opts = {
+
+		config: req.config,
+		headers: req.headers,
+		uploadTarget: {
+
+			file: {
+				name: req.files.image.name,
+				isFile: true,
+				path: req.files.image.path
+			},
+			objectId: req.params.item,
+			entity: req.config.entities.menuItems,
+			galleriesUrl: req.config.apiUrl + 'brands/' + req.params.brand + '/menu/categories/' + req.params.category + '/items/' + req.params.item + '/galleries',
+			targetGallery: 'Profile Pictures'
+		}
+	};
+
+	res.type('application/json');
+
+	UploadHelper.upload(opts, function(err, result) {
+
+		if (err) {
+
+			if (err.statusCode && !err.body) {
+											
+				ErrorHelper.sendError(err.statusCode);
+
+			} else if (err.statusCode && err.body) {
+
+				res.type("application/json");
+				res.send(err.statusCode, err.body);
+
+			} else {
+
+				res.send(err);
+			}
+
+			winston.error(err);			
+
+		} else {
+
+			winston.info("Message successfuly sent for menus_item: %s", req.params.brand);
+			console.log(util.inspect(result, {colors: true}));
+
+			res.send(result);
+		}
+	});
 };

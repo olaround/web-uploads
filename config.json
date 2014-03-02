@@ -11,7 +11,7 @@
 		"venueProfiles": "venues",
 		"categories": "venues_category",
 		"menuItems": "menus_item",
-		"menuCategories": "menus_categories",
+		"menuCategories": "menus_category",
 		"gelleryPhotos": "gallery_photos"
 	},
 	"entityPrefix": {
@@ -22,7 +22,7 @@
 		"venues": "vpp",
 		"venues_category": "vcp",
 		"menus_item": "mip",
-		"menus_categories": "mcp",
+		"menus_category": "mcp",
 		"gallery_photos": "gpp"
 	}
 }
