@@ -4,9 +4,9 @@ module.exports = (function() {
 
 	return {
 		define: function (db, models, next) {
-				
+
 				models.User = db.define("users", {
-					
+
 					id																	: {type: 'number', size: 8, required: true, unique: true},
 					username														: {type: 'text', size: 256},
 					passwd															: {type: 'text', size: 256},
@@ -100,6 +100,23 @@ module.exports = (function() {
 					dtid									 : {type: 'date', time: true},
 					lup_dtid							 : {type: 'date', time: true}
 				});
+
+				models.Activity = db.define('activities', {
+
+					id					: {type: 'number', size: 8, required: true, unique: true},
+					user_id			: {type: 'number', size: 8},
+					brand_id		: {type: 'number', size: 8},
+					store_id		: {type: 'number', size: 8},
+					type				: ['checkin','verified_checkin','rewards','join','promotion','verfied_checkin','brandcast','photo'],
+					data				: {type: 'text', required: true},
+					object_id		: {type: 'number', size: 8, required: true},
+					is_active		: {type: 'boolean', required: true},
+					dtid				: {type: 'date', time: true, required: true},
+					lup_dtid		: {type: 'date', time: true, required: true}
+
+				});
+
+				next();
 		}
 	};
 }());
