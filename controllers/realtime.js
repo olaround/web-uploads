@@ -20,7 +20,7 @@ module.exports.userUpdated = function(req, res, cb) {
 	console.log(util.inspect(req.body, {colors: true, depth: 5}));
 
 	var processedEntries = 0, entryLength = 0;
-	
+
 	var handleCallback = function() {
 		if (typeof cb != 'undefined' && typeof cb == 'function') {
 			if (++processedEntries >= entryLength) {
@@ -51,30 +51,30 @@ module.exports.userUpdated = function(req, res, cb) {
 
 							entryLength++;
 							var fbImageUrl = 'https://graph.facebook.com/' + fbUser.uid + '/picture?width=512';
-					
+
 							request.head(fbImageUrl, function(err, result) {
-		
+
 								if (err || result.statusCode != 200) {
-						
+
 									if (err) {
 										winston.error(err);
 									}
-		
+
 									if (result.statusCode != 404) {
 										console.log(util.inspect(result, {colors: true, depth: 5}));
 									}
 
 									handleCallback();
-									
+
 									// Can't respond with JSON since this isn't a regular API call
 									return new Error(result);
-		
+
 								} else {
-									
+
 									var tempName = 'fb_user_' + fbUser.uid + '_picture' + MimeHelper.getExtFromContentType(result.headers['content-type']);
 									var tempPath = "temp/" + tempName;
 									var image = request.get(fbImageUrl);
-		
+
 									MimeHelper.getMimeTypeFromStream(image, function(err, type) {
 
 										if (err) {
@@ -88,11 +88,11 @@ module.exports.userUpdated = function(req, res, cb) {
 										} else {
 
 											var opts = {
-			
+
 												config: req.config,
 												headers: req.headers,
 												uploadTarget: {
-				
+
 													file: {
 														name: tempName,
 														isFile: true,
@@ -104,18 +104,18 @@ module.exports.userUpdated = function(req, res, cb) {
 													targetGallery: 'Profile Pictures'
 												}
 											};
-				
+
 											UploadHelper.upload(opts, function(err, result) {
-				
+
 												if (err) {
-				
+
 													// Can't respond with JSON since this isn't a regular API call
 													winston.error(err);
 
 													handleCallback();
-				
+
 												} else {
-				
+
 													winston.info("Message successfuly sent for user: %s", user[0].id);
 													console.log(util.inspect(result, {colors: true}));
 
@@ -146,3 +146,55 @@ module.exports.userUpdated = function(req, res, cb) {
 	res.type("application/json");
 	res.send({result: true, status: "pending"});
 }
+
+module.exports.pushNotification = function(req, res) {
+
+	winston.info("Received Push Request");
+	console.log(util.inspect(req.body, {colors: true, depth: 7}));
+
+	if (typeof req.body == "undefined" || !req.body || typeof req.body.object == "undefined") {
+
+		ErrorHelper.sendError(req, res, 400);
+		return;
+	}
+
+	var hubService = azure.createNotificationHubService('olrd');
+	var data = {};
+
+	switch (req.body.object.type) {
+
+		case "brandcast":
+
+			data = {
+				title: req.body.title || req.body.object.data.venue || "Olaround",
+				text: req.body.object.data.text || "Posted a picture"
+			};
+
+			break;
+	}
+
+	var tags = req.body.tags || null;
+
+	// MPNS
+	hubService.mpns.sendToast(tags, {text1: data.title, text2: data.text}, function(err) {
+
+		if (err) {
+			winston.error("An error occured while pushing to MPNS");
+			console.error(util.inspect(err, {colors: true, depth: 7}));
+		}
+
+		winston.info("Pushed notification to MPNS");
+	});
+
+	hubService.gcm.send(tags, {data: data}, function(err) {
+
+		if (err) {
+			winston.error("An error occured while pushing to GCM");
+			console.error(util.inspect(err, {colors: true, depth: 7}));
+		}
+
+		winston.info("Pushed notification to GCM");
+	});
+
+	res.send({result: true, status: "pushing"});
+};
