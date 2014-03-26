@@ -1,4 +1,4 @@
-var 
+var
 	express = require("express"),
 	http = require("http"),
 	path = require("path"),
@@ -19,7 +19,7 @@ var
 	counter = 0;
 
 // Create the app
-var app = express(), 
+var app = express(),
 	uploadMiddleware = [];
 
 // Define the GLOBAL configuration
@@ -66,6 +66,8 @@ app.configure(function() {
 	// Overload the res.send() function to handle custom logic
 	app.use(function(req, res, next) {
 
+		console.log("In overload send");
+
 		res._baseSend = res.send;
 		var newSend = function(status, body) {
 
@@ -94,7 +96,7 @@ app.configure(function() {
 
 				winston.error("No file attached for Picture Upload");
 				console.log(util.inspect(req.files, {colors: true, depth: 5}));
-				
+
 				ErrorHelper.sendError(req, res, 400);
 				return new Error(req.files);
 
@@ -152,12 +154,14 @@ app.configure('production', function() {
 		} else {
 
 			// Setup Winston to use File Logging
-			winston.add(winston.transports.DailyRotateFile, { 
+			/*winston.add(winston.transports.File, {
 				maxSize: 1 * 1024 * 1024,
-				filename: "./logs/node-execution-log.txt", 
-				timestamp: true, 
-				level: 'crit' 
-			});
+				filename: "./logs/node-execution-log.txt",
+				timestamp: true,
+				level: 'crit'
+			});*/
+
+			winston.add(winston.transports.File, { filename: "./logs/node-execution-log.txt", timestamp: true, level: 'crit' });
 
 			winston.remove(winston.transports.Console);
 			winston.add(winston.transports.Console, { colorize: true, timestamp: true, level: 'crit' });
@@ -282,13 +286,13 @@ setTimeout(function() { ServiceBusHelper.handleDeadLetterTopic(config.topicName,
  *
 */
 
-setInterval(function() { 
+setInterval(function() {
 
-	request.get('http://olrd-scheduler.azurewebsites.net/', function(err, result, body) { 
+	request.get('http://olrd-scheduler.azurewebsites.net/', function(err, result, body) {
 
 		winston.info("Pinging Olaround Scheduler to keep it alive.");
 		winston.info(body);
-	}); 
+	});
 
 }, 10 * 60 * 1000);
 
@@ -298,7 +302,7 @@ setInterval(function() {
  * ========================================
  *
  * Update all user profile pictures from Facebook once before finally migrating from Rackspace.
- * 
+ *
  * Note: This code was removed from the live version. The code is still available at tag 'olrd-pending-users'.
  *
 */
