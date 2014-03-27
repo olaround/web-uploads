@@ -154,14 +154,14 @@ app.configure('production', function() {
 		} else {
 
 			// Setup Winston to use File Logging
-			/*winston.add(winston.transports.File, {
+			winston.add(winston.transports.DailyRotateFile, {
 				maxSize: 1 * 1024 * 1024,
 				filename: "./logs/node-execution-log.txt",
 				timestamp: true,
 				level: 'crit'
-			});*/
+			});
 
-			winston.add(winston.transports.File, { filename: "./logs/node-execution-log.txt", timestamp: true, level: 'crit' });
+			//winston.add(winston.transports.File, { filename: "./logs/node-execution-log.txt", timestamp: true, level: 'crit' });
 
 			winston.remove(winston.transports.Console);
 			winston.add(winston.transports.Console, { colorize: true, timestamp: true, level: 'crit' });
@@ -249,6 +249,8 @@ app.post('/rt/test', function(req, res) {
 
 	res.send(data);
 });
+
+app.post('/rt/push', controllers.Realtime.pushNotification);
 
 
 // Start the Server
