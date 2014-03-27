@@ -152,7 +152,7 @@ module.exports.pushNotification = function(req, res) {
 	winston.info("Received Push Request");
 	console.log(util.inspect(req.body, {colors: true, depth: 7}));
 
-	if (typeof req.body == "undefined" || !req.body || typeof req.body.object == "undefined") {
+	if (typeof req.body == "undefined" || !req.body || typeof req.body.object == "undefined" || typeof req.body.object.type == "undefined" || typeof req.body.object.data == "undefined") {
 
 		ErrorHelper.sendError(req, res, 400);
 		return;
