@@ -167,7 +167,8 @@ module.exports.pushNotification = function(req, res) {
 
 			data = {
 				title: req.body.title || req.body.object.data.venue || "Olaround",
-				text: req.body.object.data.text || "Posted a picture"
+				text: req.body.object.data.text || "Posted a picture",
+				objectId: req.body.object.object_id || "No ID Given"
 			};
 
 			break;
@@ -176,7 +177,7 @@ module.exports.pushNotification = function(req, res) {
 	var tags = req.body.tags || null;
 
 	// MPNS
-	hubService.mpns.sendToast(tags, {text1: data.title, text2: data.text}, function(err) {
+	hubService.mpns.sendToast(tags, {text1: data.title, text2: data.text, param: "/ScannerPage.xaml?objectId=" + data.objectId}, function(err) {
 
 		if (err) {
 			winston.error("An error occured while pushing to MPNS");
