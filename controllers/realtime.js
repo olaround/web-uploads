@@ -177,7 +177,7 @@ module.exports.pushNotification = function(req, res) {
 
 	var tags = req.body.tags || null;
 
-	// MPNS
+	/*// MPNS
 	hubService.mpns.sendToast(tags, {text1: data.title, text2: data.text, param: "/Views/ScannerPage.xaml?objectId=" + data.objectId + "&activityId=" + data.activityId}, function(err) {
 
 		if (err) {
@@ -196,6 +196,16 @@ module.exports.pushNotification = function(req, res) {
 		}
 
 		winston.info("Pushed notification to GCM");
+	});*/
+
+	hubService.send(tags, data, function(err) {
+
+		if (err) {
+			winston.error("An error occured while pushing to Template");
+			console.error(util.inspect(err, {colors: true, depth: 7}));
+		}
+
+		winston.info("Pushed notification to Template");
 	});
 
 	res.send({result: true, status: "pushing"});
