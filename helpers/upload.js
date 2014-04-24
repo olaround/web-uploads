@@ -35,11 +35,11 @@ module.exports = (function() {
 
 		winston.info("New filename: %s", rawName);
 
-		var messageData = { 
+		var messageData = {
 
 			entity: opts.uploadTarget.entity,
 			originalImage: rawName,
-			sourceUrl: "" 
+			sourceUrl: ""
 		};
 
 		var requestOpts = {
@@ -52,7 +52,7 @@ module.exports = (function() {
 			body = JSON.parse(body);
 
 			if (err || result.statusCode != 200 || typeof body.galleries == "undefined") {
-			
+
 				if (err) {
 					winston.error(err);
 				}
@@ -67,7 +67,7 @@ module.exports = (function() {
 
 				callback({statusCode: result.statusCode, endpoint: opts.uploadTarget.galleriesUrl, body: body});
 				return new Error(body);
-			
+
 			} else {
 
 				winston.info("Loaded %d galleries...", body.galleries.length);
@@ -95,7 +95,10 @@ module.exports = (function() {
 
 				console.log(util.inspect(opts.uploadTarget, {colors: true, depth: 5}));
 
-				blobService.createBlockBlobFromFile('uploads', blobName, opts.uploadTarget.file.path, function(err) {
+				var cacheAge = 365 * 24 * 60 * 60;
+				var cacheHeader = "public, no-transform, max-age=" + cacheAge;
+
+				blobService.createBlockBlobFromFile('uploads', blobName, opts.uploadTarget.file.path, {cacheControlHeader: cacheHeader, cacheControl: cacheHeader} function(err) {
 
 					if (err) {
 
@@ -120,7 +123,7 @@ module.exports = (function() {
 							update_object: true,
 							object_id: opts.uploadTarget.objectId
 						};
-						
+
 						request.post(requestOpts, function(err, updateResult, updateBody) {
 
 							console.log(updateBody);
@@ -219,8 +222,8 @@ module.exports = (function() {
 							files.forEach(function(file) {
 								fs.stat(tempDir + '/' + file, function(err, stats) {
 
-									if (err) { 
-										winston.error("Couldn't read stats for file: %s", tempDir + '/' + file); 
+									if (err) {
+										winston.error("Couldn't read stats for file: %s", tempDir + '/' + file);
 										return;
 									}
 
