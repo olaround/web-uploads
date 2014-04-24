@@ -98,7 +98,7 @@ module.exports = (function() {
 				var cacheAge = 365 * 24 * 60 * 60;
 				var cacheHeader = "public, no-transform, max-age=" + cacheAge;
 
-				blobService.createBlockBlobFromFile('uploads', blobName, opts.uploadTarget.file.path, {cacheControlHeader: cacheHeader, cacheControl: cacheHeader} function(err) {
+				blobService.createBlockBlobFromFile('uploads', blobName, opts.uploadTarget.file.path, {cacheControlHeader: cacheHeader, cacheControl: cacheHeader}, function(err) {
 
 					if (err) {
 
