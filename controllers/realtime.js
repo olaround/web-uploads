@@ -159,11 +159,10 @@ module.exports.pushNotification = function(req, res) {
 	}
 
 	var hubService;
-	var connectionString = 'Endpoint=sb://olaround.servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue=gHz7yJRlH5/BGQ5N+2NljaSwv7+9m1UCQrV14i7LF6I=';
 	if(req.body.tags && req.body.tags[0] == 'brand_olaroundhq') {
-		hubService = azure.createNotificationHubService('olrd',connectionString);
+		hubService = azure.createNotificationHubService('olrd');
 	}else if(req.body.tags && req.body.tags[0] == 'brand_coffeeplanetpakistan'){
-		hubService = azure.createNotificationHubService('hub_coffeeplanetpakistan',connectionString);
+		hubService = azure.createNotificationHubService('hub_coffeeplanetpakistan');
 	}
 
 	var data = {};
@@ -204,17 +203,7 @@ module.exports.pushNotification = function(req, res) {
 		winston.info("Pushed notification to GCM");
 	});*/
 
-	hubService.gcm.send(tags, data, function(err) {
-
-		if (err) {
-			winston.error("An error occured while pushing to Template");
-			console.error(util.inspect(err, {colors: true, depth: 7}));
-		}
-
-		winston.info("Pushed notification to Template");
-	});
-
-	hubService.apns.send(tags, data, function(err) {
+	hubService.send(tags, data, function(err) {
 
 		if (err) {
 			winston.error("An error occured while pushing to Template");
