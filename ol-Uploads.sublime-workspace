@@ -1,0 +1,2006 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"create",
+				"create-post"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"bo",
+				"border"
+			],
+			[
+				"back",
+				"background-repeat"
+			],
+			[
+				"marg",
+				"margin"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"$sco",
+				"$rootScope	AngularJS"
+			],
+			[
+				"padd",
+				"padding"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"d",
+				"disc"
+			],
+			[
+				"p",
+				"p	Tag"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"ng-in",
+				"ng-init	AngularJS"
+			],
+			[
+				"ng-bin",
+				"ng-bind-html	AngularJS"
+			],
+			[
+				"inli",
+				"inline-block"
+			],
+			[
+				"$root",
+				"$rootScope	AngularJS"
+			],
+			[
+				"bac",
+				"background-position"
+			],
+			[
+				"inl",
+				"inline-block"
+			],
+			[
+				"lo",
+				"log"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"page",
+				"pageRoute"
+			],
+			[
+				"mar",
+				"margin-bottom"
+			],
+			[
+				"ac",
+				"activityContainer"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"ma",
+				"margin-right"
+			],
+			[
+				"bran",
+				"brandData"
+			],
+			[
+				"res",
+				"response"
+			],
+			[
+				"fb",
+				"fbMetaData"
+			],
+			[
+				"web",
+				"webMetaData"
+			],
+			[
+				"f",
+				"focus"
+			],
+			[
+				"c",
+				"children"
+			],
+			[
+				"Im",
+				"important"
+			],
+			[
+				"no",
+				"no-repeat"
+			],
+			[
+				"bak",
+				"background"
+			],
+			[
+				"fact",
+				"factoryData"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"se",
+				"search"
+			],
+			[
+				"ng-c",
+				"ng-controller	AngularJS"
+			],
+			[
+				"fac",
+				"factoryData"
+			],
+			[
+				"faq",
+				"faq-active"
+			],
+			[
+				"ng-cl",
+				"ng-click	AngularJS"
+			],
+			[
+				"id",
+				"idx"
+			],
+			[
+				"l",
+				"lng"
+			],
+			[
+				"nf",
+				"ng-if	AngularJS"
+			],
+			[
+				"log",
+				"log"
+			],
+			[
+				"re",
+				"require"
+			],
+			[
+				"ng-s",
+				"ng-show	AngularJS"
+			],
+			[
+				"fomr",
+				"isFormSaved"
+			],
+			[
+				"ng-",
+				"ng-click	AngularJS"
+			],
+			[
+				"set",
+				"setHeaders"
+			],
+			[
+				"F",
+				"FacebookProvider"
+			],
+			[
+				"app",
+				"appId"
+			],
+			[
+				"face",
+				"Facebook"
+			],
+			[
+				"ca",
+				"catId"
+			],
+			[
+				"mark",
+				"markerPoints"
+			],
+			[
+				"tab",
+				"tabOption"
+			],
+			[
+				"$route",
+				"$routeParams	AngularJS"
+			],
+			[
+				"geo",
+				"geoCoord"
+			],
+			[
+				"cat",
+				"categoryId"
+			],
+			[
+				"sc",
+				"script	Tag"
+			],
+			[
+				"fa",
+				"factoryData"
+			],
+			[
+				"form",
+				"formData"
+			],
+			[
+				"for",
+				"formData"
+			],
+			[
+				"ng",
+				"ng-bind	AngularJS"
+			],
+			[
+				"u",
+				"url"
+			],
+			[
+				"b",
+				"busy"
+			],
+			[
+				"bra",
+				"brandsListMore"
+			],
+			[
+				"pop",
+				"popularBrandsList"
+			],
+			[
+				"h",
+				"h1	Tag"
+			],
+			[
+				"po",
+				"popularBrands"
+			],
+			[
+				"ng-re",
+				"ng-repeat	AngularJS"
+			],
+			[
+				"cont",
+				"contact"
+			],
+			[
+				"con",
+				"contactUs"
+			],
+			[
+				"text",
+				"textarea	Tag"
+			],
+			[
+				"pro",
+				"promotions"
+			],
+			[
+				"cons",
+				"console"
+			],
+			[
+				"$rout",
+				"$routeParams	AngularJS"
+			],
+			[
+				"$rou",
+				"$routeParams	AngularJS"
+			],
+			[
+				"$sc",
+				"$scope	AngularJS"
+			],
+			[
+				"r",
+				"route"
+			],
+			[
+				"ng-v",
+				"ng-view	AngularJS"
+			],
+			[
+				"an",
+				"AngularJS"
+			],
+			[
+				"deal",
+				"dealsClaimed"
+			],
+			[
+				"user_",
+				"user_promotions"
+			],
+			[
+				"stor",
+				"store_id"
+			],
+			[
+				"las",
+				"last_claimed_date"
+			],
+			[
+				"last",
+				"lastClaimed"
+			],
+			[
+				"last_",
+				"last_claimed_date"
+			],
+			[
+				"dea",
+				"deal_limit_count"
+			],
+			[
+				"pr",
+				"primary_category_id"
+			],
+			[
+				"one",
+				"one_time"
+			],
+			[
+				"ex",
+				"exit"
+			],
+			[
+				"act",
+				"ActiveState"
+			],
+			[
+				"is",
+				"is_active"
+			],
+			[
+				"Ca",
+				"CANCEL"
+			],
+			[
+				"err",
+				"error_description"
+			],
+			[
+				"Promo",
+				"promotion"
+			],
+			[
+				"prom",
+				"promotion_info"
+			],
+			[
+				"loa",
+				"loadInactivePromotionsStats"
+			],
+			[
+				"ina",
+				"inactivePromotions"
+			],
+			[
+				"obser",
+				"observableArray"
+			],
+			[
+				"curr",
+				"currentSortOption"
+			],
+			[
+				"im",
+				"important"
+			],
+			[
+				"user",
+				"user_promotions"
+			],
+			[
+				"promotion",
+				"Promotion"
+			],
+			[
+				"cla",
+				"claimedCount"
+			],
+			[
+				"sta",
+				"status"
+			],
+			[
+				"load",
+				"loadAllPromotions"
+			],
+			[
+				"ajax",
+				"ajaxError"
+			],
+			[
+				"get",
+				"getItem"
+			],
+			[
+				"loca",
+				"localStorage"
+			],
+			[
+				"mess",
+				"message_data"
+			],
+			[
+				"pre",
+				"pre_print"
+			],
+			[
+				"INVALID_IDENTIFIER_",
+				"INVALID_IDENTIFIER_STORE"
+			],
+			[
+				"que",
+				"query"
+			],
+			[
+				"query_",
+				"query_multiple_items"
+			],
+			[
+				"use",
+				"user_id"
+			],
+			[
+				"brand",
+				"brand_id"
+			],
+			[
+				"retr",
+				"return"
+			],
+			[
+				"st",
+				"store_id"
+			],
+			[
+				"rewa",
+				"rewardCount"
+			],
+			[
+				"ve",
+				"Venue"
+			],
+			[
+				"cool",
+				"cooldownTime"
+			],
+			[
+				"loc",
+				"localStorage"
+			],
+			[
+				"fad",
+				"fadeOut"
+			],
+			[
+				"usern",
+				"username"
+			],
+			[
+				"qr",
+				"qrcodes"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 1031,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app.js",
+			"settings":
+			{
+				"buffer_size": 8255,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "models/model.js",
+			"settings":
+			{
+				"buffer_size": 5209,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "config.json",
+			"settings":
+			{
+				"buffer_size": 768,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "controllers/index.js",
+			"settings":
+			{
+				"buffer_size": 133,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "controllers/uploads.js",
+			"settings":
+			{
+				"buffer_size": 6277,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "helpers/auth.js",
+			"settings":
+			{
+				"buffer_size": 1685,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "helpers/error.js",
+			"settings":
+			{
+				"buffer_size": 1023,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "helpers/mime.js",
+			"settings":
+			{
+				"buffer_size": 1847,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "helpers/serviceBus.js",
+			"settings":
+			{
+				"buffer_size": 4450,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "helpers/upload.js",
+			"settings":
+			{
+				"buffer_size": 7066,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "controllers/realtime.js",
+			"settings":
+			{
+				"buffer_size": 5892,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"ct",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"ctot",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Disable Package"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"php",
+				"Set Syntax: PHP"
+			],
+			[
+				"",
+				"Bookmarks: Clear All"
+			],
+			[
+				"set syn html",
+				"Set Syntax: HTML"
+			],
+			[
+				"java",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"projec",
+				"Project: Add Folder"
+			],
+			[
+				"add",
+				"Project: Add Folder"
+			]
+		],
+		"width": 472.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/D/xampp/htdocs/git/web-uploads/node_modules/azure/lib/services/core/servicemanagementsettings.js",
+		"/D/xampp/htdocs/git/web-uploads/node_modules/azure/lib/services/core/servicebussettings.js",
+		"/C/Users/User/AppData/Local/Temp/fz3temp-2/style.css",
+		"/D/xampp/htdocs/footpals/wp-admin/widgets.php",
+		"/D/xampp/htdocs/footpals/wp-content/themes/ClubSports/languages/wordpress-importer.pot",
+		"/D/xampp/htdocs/footpals/wp-activate.php",
+		"/D/xampp/htdocs/node/sails/mySailsApp/api/controllers/FooController.js",
+		"/D/xampp/htdocs/node/sails/mySailsApp/config/views.js",
+		"/D/xampp/htdocs/footpals/wp-admin/network/site-themes.php",
+		"/D/xampp/htdocs/footpals/wp-settings.php",
+		"/D/xampp/htdocs/footpals/wp-includes/bookmark-template.php",
+		"/D/xampp/htdocs/footpals/wp-includes/bookmark.php",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/themes/route2health/active/base/js/ae-sdk.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/lib/azure.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/CONTRIBUTING.md",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/ejs/test/fixtures/includes/menu-item.ejs",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/node_modules/wns/test/nock/ToastImageAndText01-success.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/node_modules/mime/test.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/partials/theme_settings.html",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/express/LICENSE",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/package.json",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/node_modules/request/tests/test-headers.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/themes/route2health/active/views/header_resources.ejs",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/request/node_modules/form-data/node_modules/combined-stream/node_modules/delayed-stream/test/integration/test-handle-source-errors.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/node_modules/request/tests/test-hawk.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/routes/index.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/themes/route2health/active/base/partials/home.html",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/themes/route2health/active/base/partials/orders.html",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/output.txt",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/node_modules/tunnel/test/https-over-https-error.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/themes/route2health/active/base/partials/askdoctorthanks.html",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/js/module.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/views/header.ejs",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/themes/route2health/active/views/index.ejs",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/themes/route2health/active/views/header.ejs",
+		"/D/Bramerz/ae-commerce/route2Health/20-05-2014/theme/base/js/controllers/cart.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/themes/route2health/active/base/css/theme/theme-defaults/theme.css",
+		"/D/xampp/htdocs/ae-commerce/bootstrap-fishry/public/themes/demo/active/base/partials/collections.html",
+		"/D/xampp/htdocs/ae-commerce/bootstrap-fishry/public/themes/demo/active/base/partials/product.html",
+		"/D/xampp/htdocs/ae-commerce/bootstrap-fishry/public/themes/demo/active/base/partials/home.html",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/themes/route2health/active/base/partials/collections.html",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/themes/route2health/active/base/js/controllers/collection.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/ejs/examples/functions.ejs",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/lib/serviceruntime/protocol1runtimeclient.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/node_modules/request/tests/test-piped-redirect.js",
+		"/D/xampp/htdocs/ae-commerce/bootstrap-fishry/public/themes/demo/active/base/partials/login.html",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/gruntfile.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/lib/services/blob/internal/chunkAllocator.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/lib/services/core/filters/signingfilter.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/request/node_modules/http-signature/lib/signer.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/formidable/test/fixture/js/special-chars-in-filename.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/node_modules/envconf/test/config-test.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/request/CHANGELOG.md",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/node_modules/request/tests/test-protocol-changing-redirect.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/express/node_modules/connect/node_modules/multiparty/test/fixture/http/encoding/beta-sticker-1.png.http",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/lib/diagnostics/logger.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/examples/samples/longpolling.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/partials/login.html",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/themes/route2health/active/base/partials/login.html",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/node_modules/request/tests/test-localAddress.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/themes/route2health/active/base/partials/theme_settings.html",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/node_modules/tunnel/test/http-over-http.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/ejs/History.md",
+		"/D/xampp/htdocs/ae-commerce/bootstrap-fishry/public/themes/demo/active/base/js/controllers/collection.js",
+		"/D/Bramerz/ae-commerce/route2Health/20-05-2014/theme/base/js/controllers/global.js",
+		"/D/Bramerz/ae-commerce/route2Health/20-05-2014/theme/views/header.ejs",
+		"/D/Bramerz/ae-commerce/route2Health/20-05-2014/theme/views/footer.ejs",
+		"/D/Bramerz/ae-commerce/route2Health/20-05-2014/theme/views/index.ejs",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/themes/demo/active/views/header.ejs",
+		"/D/Bramerz/ae-commerce/route2Health/Backup/server.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/partials/thankyou.html",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/partials/confirm.html",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/partials/signup.html",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/js/frontend.js",
+		"/D/xampp/htdocs/sencha/MyApp/app.js",
+		"/D/xampp/htdocs/svn/NationMobileApp/code/beta/js/app.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/README.md",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/lib/services/serviceBus/models/registrationresult.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/lib/serviceruntime/roleenvironment.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/node_modules/request/tests/test-timeout.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/node_modules/xml2js/node_modules/sax/test/script.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/font/Descr.WD3",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/node_modules/validator/lib/defaultError.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/lib/util/date.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/ejs/benchmark.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/css/theme/theme-defaults/bootstrap-responsive.css",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/js/lib/angular/angular-resource.min.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/lib/services/blob/internal/blobpagerangestream.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/node_modules/azure/node_modules/request/node_modules/form-data/node_modules/combined-stream/test/integration/test-delayed-streams-and-buffers-and-strings.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/theme.rar",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/views/footer.ejs",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/server.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/partials/cart.html",
+		"/D/xampp/htdocs/ae-commerce/bootstrap-fishry/public/theme/views/footer.ejs",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/partials/404.html",
+		"/D/xampp/htdocs/node/expressWorld/package.json",
+		"/C/Users/User/AppData/Local/Temp/fz3temp-1/functions.php",
+		"/D/xampp/htdocs/ae-commerce/bootstrap-fishry/public/theme/base/partials/confirm.html",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/partials/page.html",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/partials/home.html",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/partials/product.html",
+		"/C/Users/User/Downloads/theme (1)/theme/base/partials/product.html",
+		"/C/Users/User/Downloads/active/views/header.ejs",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/js/lib/ae-sdk.js",
+		"/D/xampp/htdocs/ae-commerce/bootstrap-fishry/public/theme/base/partials/signup.html",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/js/theme-defaults/plugins.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/css/theme/theme-defaults/product-detail-back.css",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/views/header_resources.ejs",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/partials/collections.html",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/js/controllers/global.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/js/controllers/home.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/js/controllers/product.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/js/services.js",
+		"/D/xampp/htdocs/ae-commerce/bootstrap-fishry/public/theme/base/partials/collections.html",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/js/controllers/collection.js",
+		"/D/xampp/htdocs/ae-commerce/route2Health-final/server.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/js/controllers/cart.js",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/css/theme/theme-defaults/theme.css",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/css/theme/theme-defaults/products-detail.css",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/css/theme/theme-defaults/480.css",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/css/theme/theme-defaults/320.css",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/css/theme/theme-defaults/768.css",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/css/theme/frontendstyle.css",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/partials/sidebar.html",
+		"/D/xampp/htdocs/ae-commerce/route2health/bootstrap-fishry/public/theme/base/css/theme/theme.css",
+		"/D/xampp/htdocs/ae-commerce/bootstrap-fishry/public/theme/base/partials/login.html",
+		"/D/xampp/htdocs/ae-commerce/bootstrap-fishry/public/theme/base/partials/product.html",
+		"/C/Users/User/Downloads/active/base/partials/home.html"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"D:\\xampp\\htdocs\\git\\web-uploads",
+			"D:\\xampp\\htdocs\\footpals",
+			"D:\\xampp\\htdocs\\ae-commerce\\route2health\\bootstrap-fishry\\public\\themes\\route2health\\active\\base\\partials",
+			"D:\\xampp\\htdocs\\ae-commerce\\route2health\\bootstrap-fishry\\public\\themes",
+			"D:\\xampp\\htdocs\\ae-commerce\\route2health\\bootstrap-fishry\\public\\themes\\route2health\\active\\base\\partials",
+			"D:\\xampp\\htdocs\\ae-commerce\\route2health\\bootstrap-fishry",
+			"D:\\xampp\\htdocs\\ae-commerce\\route2health",
+			"D:\\xampp\\htdocs\\ae-commerce\\route2health\\bootstrap-fishry\\public\\theme\\base",
+			"D:\\xampp\\htdocs\\ae-commerce\\route2health",
+			"D:\\xampp\\htdocs\\ae-commerce\\route2Health-final",
+			"D:\\xampp\\htdocs\\ae-commerce\\route2health",
+			"D:\\xampp\\htdocs\\git\\web-olsite",
+			"D:\\xampp\\htdocs\\git\\web-olsite\\public",
+			"D:\\xampp\\htdocs\\git\\web-olsite",
+			"D:\\xampp\\htdocs\\git\\web-olsite\\public",
+			"D:\\xampp\\htdocs\\git\\web-olsite\\public\\assets",
+			"D:\\xampp\\htdocs\\git\\web-olsite\\public\\assets\\js\\views",
+			"C:\\Users\\User\\Downloads\\angular-app-master\\angular-app-master",
+			"C:\\Users\\User\\Downloads\\angular-app-master\\angular-app-master\\client",
+			"D:\\xampp\\htdocs\\git\\web-olman",
+			"D:\\xampp\\htdocs\\git\\zero-api",
+			"D:\\xampp\\htdocs\\git\\web-olman",
+			"D:\\xampp\\htdocs\\git\\zero-api\\application\\views\\email_templates\\messages",
+			"D:\\xampp\\htdocs\\git\\zero-api\\application",
+			"D:\\xampp\\htdocs\\git\\zero-api",
+			"D:\\xampp\\htdocs\\git\\zero-api\\application",
+			"D:\\xampp\\htdocs\\git\\zero-api",
+			"D:\\xampp\\htdocs\\git\\zero-api\\application\\controllers",
+			"D:\\xampp\\htdocs\\git\\web-olman",
+			"D:\\xampp\\htdocs\\git\\web-olman\\scripts",
+			"D:\\xampp\\htdocs\\dev\\CodeIgniter",
+			"D:\\xampp\\htdocs\\git\\web-olman"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"var ",
+			"tags",
+			"createFromConfig",
+			"push",
+			"uploads",
+			"upload",
+			"accessKey",
+			"uploadBrandBackground",
+			"push",
+			".blog-vertical header.pix-heading-title",
+			".countdown-buttons",
+			".pix-sc-team li figure img",
+			"#menu-create-post li a",
+			".widget.facebok_widget span",
+			"This page is restricted",
+			".wpuf-post-form textarea",
+			"logo",
+			"#footer p",
+			".wpuf-post-form textarea",
+			"current-menu-item",
+			"wpuf-post-form",
+			".pagination ul > li:last-child > a",
+			".pagination ul > li:last-child > a, .pagination ul > li:last-child > span",
+			"$rootScope.",
+			"readonly",
+			"askDoctor",
+			"Twitter",
+			"process.env.PORT",
+			"requireS",
+			"require",
+			"connect",
+			"#add_address .submit2",
+			"featured pr",
+			"#actionLoader",
+			"submit",
+			"image-loader",
+			"table#cart_summary td.cart_product",
+			"\n								          Tax are dependent on shipping country\n								        ",
+			" src",
+			"src=",
+			" src=",
+			"tax",
+			"redirectHandler",
+			"#loader",
+			".list li .center_block ",
+			"<aside id=\"right_column\" class=\"span3 column right_home\">",
+			"image-loader",
+			"#wrap",
+			"wrap",
+			"#header_user #shopping_cart .opancart",
+			".products_block ul li a.products_block_img",
+			".products_block ul li > div",
+			"respo",
+			".css",
+			".addhomefeatured ul li",
+			"<aside id=\"right_column\" class=\"span3\">",
+			"<!--",
+			"id=\"center_column\"",
+			"center_column",
+			"Mobile",
+			"mobile",
+			"sitemap",
+			"#header_user #shopping_cart .opancart",
+			"total amount",
+			"pageCtr",
+			"firstname",
+			"FirstName",
+			"Customer",
+			"required=\"\"",
+			"products",
+			"href=\"/product",
+			"other",
+			"Other",
+			"other",
+			"href=\"/product",
+			"href=\"/product/",
+			"guest",
+			"continue",
+			"continue as",
+			"products",
+			"our_price_display",
+			"product.productBarcode",
+			".row_1 p",
+			"href=\"/product/",
+			"price",
+			".list li .right_bloc",
+			"href=\"/product/{",
+			"products.productName",
+			"/{{products.productName",
+			"/{{products.productName}}\"",
+			"href=\"/product/{{products.productName}}\"",
+			"product_desc",
+			"product_desc ng-binding",
+			"productDescription",
+			"pagination ",
+			"header_resources",
+			"320.css",
+			"ServerVars",
+			"requireServerVars",
+			"store",
+			"products.productDescription.slice(0,80)",
+			"frontend",
+			"frontendstyle",
+			"!= undefined",
+			" == undefined",
+			"!= unde",
+			"productVenndor",
+			"selectProductSort",
+			".product_view li#product_view_list, .product_view li#product_view_grid",
+			"fonts",
+			"font",
+			"pakis",
+			"Customer.Pone",
+			"default.jpg",
+			"defa",
+			"dedau",
+			"ListPaymentMethod",
+			"Customer.Country",
+			".titled_box h2, .account_creation h3",
+			"#center_column #account-creation_form .titled_box p input",
+			" span6",
+			"class=\"\"",
+			".pagination ul > li > a, .pagination ul > li > span",
+			"pagination_next",
+			"add to",
+			"User.info.CustomerEmail",
+			"customerName",
+			"table#cart_summary td.cart_product"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"<aside id=\"right_column\" class=\"span2 column right_home\">",
+			"<aside id=\"right_column\" class=\"span2\">",
+			"{{SettingGeneral.settings.CURRENCIES_FORMAT}}&nbsp;{",
+			"PKR &nbsp;{",
+			"PKR &nbsp;{ ",
+			"PKR ",
+			"PKR: ",
+			"#FECD00",
+			"#FECDOO",
+			"#fecdoo",
+			"#363435",
+			"#238f46"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": false,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "D:\\xampp\\htdocs\\git\\web-uploads"
+		}
+	],
+	"groups":
+	[
+		{
+			"selected": 10,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1031,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8255,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6648,
+								6648
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3493.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "models/model.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5209,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 697.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "config.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 768,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "controllers/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 133,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "controllers/uploads.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6277,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3634,
+								3640
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2446.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "helpers/auth.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1685,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1559,
+								1559
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "helpers/error.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1023,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "helpers/mime.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1847,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1175.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "helpers/serviceBus.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4450,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								344,
+								344
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "helpers/upload.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7066,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1720,
+								1720
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "controllers/realtime.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5892,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4592,
+								4592
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 657.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 21.0
+	},
+	"input":
+	{
+		"height": 29.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 200.0
+	},
+	"project": "",
+	"replace":
+	{
+		"height": 38.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"widget.css",
+				"wp-content\\themes\\ClubSports\\css\\widget.css"
+			],
+			[
+				"style",
+				"wp-content\\themes\\ClubSports\\style.css"
+			],
+			[
+				"sty",
+				"wp-content\\themes\\ClubSports\\style.css"
+			],
+			[
+				"boots",
+				"wp-content\\themes\\ClubSports\\css\\bootstrap.css"
+			],
+			[
+				"ask",
+				"public\\themes\\route2health\\active\\base\\partials\\askdoctor.html"
+			],
+			[
+				"signup",
+				"public\\themes\\route2health\\active\\base\\partials\\signup.html"
+			],
+			[
+				"confim",
+				"public\\themes\\route2health\\active\\base\\partials\\confirm.html"
+			],
+			[
+				"heade",
+				"public\\themes\\route2health\\active\\views\\header.ejs"
+			],
+			[
+				"home",
+				"public\\themes\\route2health\\active\\base\\partials\\home.html"
+			],
+			[
+				"index.html",
+				"node_modules\\azure\\node_modules\\underscore\\index.html"
+			],
+			[
+				"theme",
+				"public\\themes\\route2health\\active\\base\\css\\theme\\theme-defaults\\theme.css"
+			],
+			[
+				"confi",
+				"public\\themes\\route2health\\active\\base\\partials\\confirm.html"
+			],
+			[
+				"sider",
+				"public\\themes\\route2health\\active\\base\\partials\\sidebar.html"
+			],
+			[
+				"header",
+				"public\\themes\\route2health\\active\\views\\header.ejs"
+			],
+			[
+				"global",
+				"public\\themes\\route2health\\active\\base\\js\\controllers\\global.js"
+			],
+			[
+				"index",
+				"routes\\index.js"
+			],
+			[
+				"confir",
+				"public\\themes\\route2health\\active\\base\\partials\\confirm.html"
+			],
+			[
+				"coll",
+				"public\\themes\\route2health\\active\\base\\partials\\collections.html"
+			],
+			[
+				"sign",
+				"public\\themes\\route2health\\active\\base\\partials\\signup.html"
+			],
+			[
+				"login",
+				"public\\themes\\route2health\\active\\base\\partials\\login.html"
+			],
+			[
+				"cart",
+				"public\\themes\\route2health\\active\\base\\partials\\cart.html"
+			],
+			[
+				"collec",
+				"public\\themes\\route2health\\active\\base\\partials\\collections.html"
+			],
+			[
+				"collection",
+				"public\\themes\\route2health\\active\\base\\partials\\collections.html"
+			],
+			[
+				"product",
+				"public\\themes\\route2health\\active\\base\\partials\\product.html"
+			],
+			[
+				"side",
+				"public\\themes\\route2health\\active\\base\\partials\\sidebar.html"
+			],
+			[
+				"theem",
+				"public\\themes\\route2health\\active\\base\\css\\theme\\theme-defaults\\theme.css"
+			],
+			[
+				"header_re",
+				"public\\themes\\route2health\\active\\views\\header_resources.ejs"
+			],
+			[
+				"haeder",
+				"public\\themes\\route2health\\active\\views\\header.ejs"
+			],
+			[
+				"sig",
+				"public\\themes\\route2health\\active\\base\\partials\\signup.html"
+			],
+			[
+				"footer",
+				"public\\themes\\route2health\\active\\views\\footer.ejs"
+			],
+			[
+				"hea",
+				"public\\themes\\route2health\\active\\views\\header.ejs"
+			],
+			[
+				"glob",
+				"public\\themes\\route2health\\active\\base\\js\\controllers\\global.js"
+			],
+			[
+				"orders",
+				"public\\themes\\route2health\\active\\base\\partials\\orders.html"
+			],
+			[
+				"them",
+				"public\\themes\\route2health\\active\\base\\css\\theme\\theme-defaults\\theme.css"
+			],
+			[
+				"page",
+				"public\\themes\\route2health\\active\\base\\partials\\page.html"
+			],
+			[
+				"globa",
+				"public\\themes\\route2health\\active\\base\\js\\controllers\\global.js"
+			],
+			[
+				"logi",
+				"public\\themes\\route2health\\active\\base\\partials\\login.html"
+			],
+			[
+				"login.html",
+				"D:\\xampp\\htdocs\\ae-commerce\\route2health\\bootstrap-fishry\\public\\theme\\base\\partials\\login.html"
+			],
+			[
+				"colee",
+				"node_modules\\azure\\lib\\serviceruntime\\roleenvironment.js"
+			],
+			[
+				"colle",
+				"public\\theme\\base\\partials\\collections.html"
+			],
+			[
+				"confirm",
+				"public\\theme\\base\\partials\\confirm.html"
+			],
+			[
+				"cart.js",
+				"public\\theme\\base\\js\\controllers\\cart.js"
+			],
+			[
+				"glo",
+				"public\\theme\\base\\js\\controllers\\global.js"
+			],
+			[
+				"prod",
+				"public\\theme\\base\\partials\\product.html"
+			],
+			[
+				"produ",
+				"public\\theme\\base\\partials\\product.html"
+			],
+			[
+				"pro",
+				"public\\theme\\base\\partials\\product.html"
+			],
+			[
+				"theme_",
+				"public\\theme\\base\\partials\\theme_settings.html"
+			],
+			[
+				"produc",
+				"public\\theme\\base\\partials\\product.html"
+			],
+			[
+				"con",
+				"bootstrap-fishry\\public\\theme\\base\\partials\\confirm.html"
+			],
+			[
+				"sigh",
+				"bootstrap-fishry\\public\\theme\\base\\partials\\signup.html"
+			],
+			[
+				"services",
+				"bootstrap-fishry\\public\\theme\\base\\js\\services.js"
+			],
+			[
+				"serve",
+				"bootstrap-fishry\\server.js"
+			],
+			[
+				"servi",
+				"bootstrap-fishry\\public\\theme\\base\\js\\services.js"
+			],
+			[
+				"conf",
+				"bootstrap-fishry\\public\\theme\\base\\partials\\confirm.html"
+			],
+			[
+				"head",
+				"bootstrap-fishry\\public\\theme\\views\\header_resources.ejs"
+			],
+			[
+				"modul",
+				"bootstrap-fishry\\public\\theme\\base\\js\\module.js"
+			],
+			[
+				"collect",
+				"bootstrap-fishry\\public\\theme\\base\\js\\controllers\\collection.js"
+			],
+			[
+				"plugin.js",
+				"bootstrap-fishry\\public\\theme\\base\\js\\theme-defaults\\plugins.js"
+			],
+			[
+				"plugin",
+				"bootstrap-fishry\\public\\theme\\base\\js\\theme-defaults\\plugins.js"
+			],
+			[
+				"home.js",
+				"bootstrap-fishry\\public\\theme\\base\\js\\controllers\\home.js"
+			],
+			[
+				"320",
+				"route2health\\bootstrap-fishry\\public\\theme\\base\\css\\theme\\theme-defaults\\320.css"
+			],
+			[
+				"front",
+				"bootstrap-fishry\\public\\theme\\base\\js\\frontend.js"
+			],
+			[
+				"48",
+				"route2health\\bootstrap-fishry\\public\\theme\\base\\css\\theme\\theme-defaults\\480.css"
+			],
+			[
+				"786",
+				"bootstrap-fishry\\public\\theme\\base\\css\\theme\\theme-defaults\\768.css"
+			],
+			[
+				"theme.css",
+				"route2health\\bootstrap-fishry\\public\\theme\\base\\css\\theme\\theme-defaults\\theme.css"
+			],
+			[
+				"themes",
+				"bootstrap-fishry\\public\\theme\\base\\css\\theme\\theme.css"
+			],
+			[
+				"fronte",
+				"route2Health-final\\public\\theme\\base\\css\\theme\\frontendstyle.css"
+			],
+			[
+				"module",
+				"route2Health-final\\public\\theme\\base\\js\\module.js"
+			],
+			[
+				"eader",
+				"route2Health-final\\public\\theme\\views\\header.ejs"
+			],
+			[
+				"server",
+				"route2Health-final\\server.js"
+			],
+			[
+				"",
+				"bootstrap-fishry\\public\\theme\\base\\partials\\cart.html"
+			],
+			[
+				"mod",
+				"route2Health-final\\public\\theme\\base\\js\\module.js"
+			],
+			[
+				"thank",
+				"route2Health-final\\public\\theme\\base\\partials\\thankyou.html"
+			],
+			[
+				"cole",
+				"base-theme\\public\\theme\\base\\partials\\collections.html"
+			],
+			[
+				"fron",
+				"route2Health-final\\public\\theme\\base\\js\\frontend.js"
+			],
+			[
+				"home.html",
+				"route2Health-final\\public\\theme-backup\\base\\partials\\home.html"
+			],
+			[
+				"colec",
+				"base-theme\\public\\theme\\base\\partials\\collections.html"
+			],
+			[
+				"cata",
+				"public\\frontend\\partials\\catagory.html"
+			],
+			[
+				"check",
+				"public\\frontend\\partials\\checkout.html"
+			],
+			[
+				"contact",
+				"public\\frontend\\partials\\contact.html"
+			],
+			[
+				"api",
+				"public\\js\\api.js"
+			],
+			[
+				"brands",
+				"public\\js\\controllers\\brands.js"
+			],
+			[
+				"brands.js",
+				"public\\js\\controllers\\brands.js"
+			],
+			[
+				"brande",
+				"public\\partials\\brandDetail.html"
+			],
+			[
+				"brandde",
+				"public\\partials\\brandDetail.html"
+			],
+			[
+				"branddet",
+				"public\\partials\\brandDetail.html"
+			],
+			[
+				"brandd",
+				"public\\partials\\brandDetail.html"
+			],
+			[
+				"deals",
+				"public\\partials\\deals.html"
+			],
+			[
+				"act",
+				"public\\partials\\activities.html"
+			],
+			[
+				"actv",
+				"public\\partials\\activities.html"
+			],
+			[
+				"main",
+				"public\\css\\main.css"
+			],
+			[
+				"actvi",
+				"public\\partials\\activities.html"
+			],
+			[
+				"activ",
+				"public\\partials\\activityDetail.html"
+			],
+			[
+				"angu",
+				"public\\js\\angularApp.js"
+			],
+			[
+				"brand",
+				"public\\partials\\brands.html"
+			],
+			[
+				"brandet",
+				"public\\partials\\brandDetail.html"
+			],
+			[
+				"node",
+				"routes\\nodeRoutes.js"
+			],
+			[
+				"brands.ht",
+				"public\\partials\\brands.html"
+			],
+			[
+				"deals.js",
+				"public\\js\\controllers\\deals.js"
+			],
+			[
+				"an",
+				"public\\js\\angularApp.js"
+			],
+			[
+				"faq",
+				"public\\partials\\faqs.html"
+			],
+			[
+				"direc",
+				"public\\js\\directives.js"
+			],
+			[
+				"branddeta",
+				"public\\partials\\brandDetail.html"
+			],
+			[
+				"inde",
+				"views\\index.ejs"
+			],
+			[
+				"how",
+				"public\\partials\\howitworks.html"
+			],
+			[
+				"acti",
+				"public\\partials\\activities.html"
+			],
+			[
+				"term",
+				"public\\partials\\terms.html"
+			],
+			[
+				"branddetail",
+				"public\\partials\\brandDetail.html"
+			],
+			[
+				"angua",
+				"public\\js\\angularApp.js"
+			],
+			[
+				"priva",
+				"public\\partials\\privacy.html"
+			],
+			[
+				"static",
+				"public\\js\\controllers\\staticPages.js"
+			],
+			[
+				"bands",
+				"public\\js\\controllers\\brands.js"
+			],
+			[
+				"index.htm",
+				"public\\partials\\index.html"
+			],
+			[
+				"slider",
+				"public\\css\\slider.css"
+			],
+			[
+				"unt",
+				"untitled"
+			],
+			[
+				"un",
+				"untitled"
+			],
+			[
+				"app",
+				"public\\partials\\app.html"
+			],
+			[
+				"direct",
+				"public\\js\\directives.js"
+			],
+			[
+				"dire",
+				"public\\js\\directives.js"
+			],
+			[
+				"howit",
+				"public\\partials\\howitworks.html"
+			],
+			[
+				"post",
+				"public\\js\\controllers\\postData.js"
+			],
+			[
+				"directive",
+				"public\\js\\directives.js"
+			],
+			[
+				"brans",
+				"public\\js\\controllers\\brands.js"
+			],
+			[
+				"faqs",
+				"public\\partials\\faqs.html"
+			],
+			[
+				"index.ht",
+				"public\\partials\\index.html"
+			],
+			[
+				"brands.htm",
+				"public\\partials\\brands.html"
+			],
+			[
+				"serv",
+				"server.js"
+			],
+			[
+				"conta",
+				"public\\partials\\contact.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"D:\\xampp\\htdocs\\git\\web-olsite\\olsite-angular.sublime-project"
+			],
+			[
+				"olsite",
+				"D:\\xampp\\htdocs\\git\\web-olsite\\olsite-angular.sublime-project"
+			],
+			[
+				"route",
+				"D:\\xampp\\htdocs\\ae-commerce\\route2health\\route2health.sublime-project"
+			],
+			[
+				"olman",
+				"D:\\xampp\\htdocs\\git\\web-olman\\olman.sublime-project"
+			],
+			[
+				"ols",
+				"D:\\xampp\\htdocs\\git\\web-olsite\\olsite-angular.sublime-project"
+			],
+			[
+				"rot",
+				"D:\\xampp\\htdocs\\ae-commerce\\route2health\\route2health.sublime-workspace"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 268.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
