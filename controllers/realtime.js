@@ -203,7 +203,7 @@ module.exports.pushNotification = function(req, res) {
 		winston.info("Pushed notification to GCM");
 	});*/
 
-	hubService.send(tags, data, function(err) {
+	hubService.gcm.send(tags, data, function(err) {
 
 		if (err) {
 			winston.error("An error occured while pushing to Template");
