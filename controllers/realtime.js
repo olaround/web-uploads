@@ -213,5 +213,15 @@ module.exports.pushNotification = function(req, res) {
 		winston.info("Pushed notification to Template");
 	});
 
+	hubService.apns.send(tags, data, function(err) {
+
+		if (err) {
+			winston.error("An error occured while pushing to Template");
+			console.error(util.inspect(err, {colors: true, depth: 7}));
+		}
+
+		winston.info("Pushed notification to Template");
+	});
+
 	res.send({result: true, status: "pushing"});
 };
