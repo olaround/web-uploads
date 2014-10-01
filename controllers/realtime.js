@@ -159,7 +159,7 @@ module.exports.pushNotification = function(req, res) {
 	}
 
 	var hubService;
-	var connectionString = 'Endpoint=sb://olaround.servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue=gHz7yJRlH5/BGQ5N+2NljaSwv7+9m1UCQrV14i7LF6I=';
+	var connectionString = 'Endpoint=sb://olaround.servicebus.windows.net/;SharedAccessKeyName=DefaultFullSharedAccessSignature;SharedAccessKey=ueKTmXk7A1Zxi+w22Q+I5G+JMteFVF+ZND9/iM2bqlY=';
 	if(req.body.tags && req.body.tags[0] == 'brand_olaroundhq') {
 		hubService = azure.createNotificationHubService('olrd',connectionString);
 	}else if(req.body.tags && req.body.tags[0] == 'brand_coffeeplanetpakistan'){
@@ -204,7 +204,7 @@ module.exports.pushNotification = function(req, res) {
 		winston.info("Pushed notification to GCM");
 	});
 
-	hubService.send(tags, data, function(err) {
+	/*hubService.send(tags, data, function(err) {
 
 		if (err) {
 			winston.error("An error occured while pushing to Template");
@@ -212,7 +212,7 @@ module.exports.pushNotification = function(req, res) {
 		}
 
 		winston.info("Pushed notification to Template");
-	});
+	});*/
 
 	res.send({result: true, status: "pushing"});
 };
