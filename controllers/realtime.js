@@ -191,7 +191,7 @@ module.exports.pushNotification = function(req, res) {
 		}
 
 		winston.info("Pushed notification to MPNS");
-	});
+	});*/
 
 	hubService.gcm.send(tags, {data: data}, function(err) {
 
@@ -201,9 +201,9 @@ module.exports.pushNotification = function(req, res) {
 		}
 
 		winston.info("Pushed notification to GCM");
-	});*/
+	});
 
-	hubService.send(tags, data, function(err) {
+	/*hubService.send(tags, data, function(err) {
 
 		if (err) {
 			winston.error("An error occured while pushing to Template");
@@ -211,7 +211,7 @@ module.exports.pushNotification = function(req, res) {
 		}
 
 		winston.info("Pushed notification to Template");
-	});
+	});*/
 
 	res.send({result: true, status: "pushing"});
 };
