@@ -158,14 +158,9 @@ module.exports.pushNotification = function(req, res) {
 		return;
 	}
 
-	var hubService;
-	if(req.body.tags && req.body.tags[0] == 'brand_olaroundhq') {
-		hubService = azure.createNotificationHubService('olrd');
-	}else if(req.body.tags && req.body.tags[0] == 'brand_coffeeplanetpakistan'){
-		hubService = azure.createNotificationHubService('hub_coffeeplanetpakistan');
-	}
-
+	var hubService = azure.createNotificationHubService('olrd');
 	var data = {};
+
 	switch (req.body.object.type) {
 
 		case "brandcast":
