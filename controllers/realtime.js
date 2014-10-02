@@ -196,7 +196,7 @@ module.exports.pushNotification = function(req, res) {
 
 	
 	var payload = '{ "message" : "Template push to everyone!"}';
-    hubService.gcm.send(null, payload, 
+    hubService.send(null, payload, 
      function(error, outcome) {
          console.log('issue sending push');
          console.log('error: ', error);
