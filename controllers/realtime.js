@@ -204,7 +204,7 @@ module.exports.pushNotification = function(req, res) {
      	
      	data = {
 			title: "Olaround Push error Block",
-			text: error,
+			text: outcome,
 			objectId: req.body.object.object_id || null,
 			activityId: req.body.object.id || null
 		};
