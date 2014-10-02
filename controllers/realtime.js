@@ -203,8 +203,8 @@ module.exports.pushNotification = function(req, res) {
 		// console.log('outcome: ',outcome);
      	
      	data = {
-			title: "Olaround Push error Block",
-			text: outcome,
+			title: error || 'error is undefined',
+			text: outcome || 'outcome is undefined',
 			objectId: req.body.object.object_id || null,
 			activityId: req.body.object.id || null
 		};
