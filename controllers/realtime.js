@@ -195,8 +195,8 @@ module.exports.pushNotification = function(req, res) {
 	});*/
 
 	
-	var payload = '{ "message" : "Template push to everyone!"}';
-    hubService.send(null, payload, 
+	// var payload = '{ "message" : "Template push to everyone!"}';
+    hubService.send(null, data, 
      function(error, outcome) {
          console.log('issue sending push');
          console.log('error: ', error);
