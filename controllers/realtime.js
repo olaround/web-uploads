@@ -196,38 +196,27 @@ module.exports.pushNotification = function(req, res) {
 
 	
 	// var payload = '{ "message" : "Template push to everyone!"}';
-    // hubService.send(null, data, 
-    //  function(error, outcome) {
-    //      console.log('issue sending push');
-    //      console.log('error: ', error);
-    //      console.log('outcome: ',outcome);
-    //  });  
+    hubService.gcm.send(tags, data, 
+     function(error, outcome) {
+		// console.log('issue sending push');
+		// console.log('error: ', error);
+		// console.log('outcome: ',outcome);
+     	
+     	data = {
+			title: "Olaround Push error Block",
+			text: req.body.object.data.text || "Posted a picture",
+			objectId: req.body.object.object_id || null,
+			activityId: req.body.object.id || null
+		};
 
+        hubService.send(tags, data, 
+	     function(error, outcome) {
+	         console.log('issue sending push');
+	         console.log('error: ', error);
+	         console.log('outcome: ',outcome);
+	     });
 
-    // If the insert succeeds, send a notification.
-    hubService.gcm.send(null, payload, {
-        success: function(pushResponse) {
-            console.log("Sent push:", pushResponse, payload);
-            // request.respond();
-            },              
-        error: function (pushResponse) {
-            console.log("Error Sending push:", pushResponse);
-            
-            data = {
-				title: "Olaround Push from error block",
-				text: "Posted a picture",
-				objectId: '',
-				activityId: ''
-			};
-
-            hubService.send(null, data, 
-		     function(error, outcome) {
-		         console.log('issue sending push');
-		         console.log('error: ', error);
-		         console.log('outcome: ',outcome);
-		     });
-            }
-        });
+     });  
 
 	/*hubService.apns.send(tags, '{"aps":{"alert" : "Hello from Mobile Services!"}}', function(err) {
 
