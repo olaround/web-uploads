@@ -159,11 +159,10 @@ module.exports.pushNotification = function(req, res) {
 	}
 
 	var hubService;
-	var connectionString = 'Endpoint=sb://olaround.servicebus.windows.net/;SharedAccessKeyName=DefaultFullSharedAccessSignature;SharedAccessKey=ueKTmXk7A1Zxi+w22Q+I5G+JMteFVF+ZND9/iM2bqlY=';
 	if(req.body.tags && req.body.tags[0] == 'brand_olaroundhq') {
-		hubService = azure.createNotificationHubService('olrd',connectionString);
+		hubService = azure.createNotificationHubService('olrd');
 	}else if(req.body.tags && req.body.tags[0] == 'brand_coffeeplanetpakistan'){
-		hubService = azure.createNotificationHubService('hub_coffeeplanetpakistan',connectionString);
+		hubService = azure.createNotificationHubService('hub_coffeeplanetpakistan');
 	}
 
 	var data = {};
@@ -192,33 +191,9 @@ module.exports.pushNotification = function(req, res) {
 		}
 
 		winston.info("Pushed notification to MPNS");
-	});*/
+	});
 
-	
-	// var payload = '{ "message" : "Template push to everyone!"}';
-    hubService.gcm.send(tags, data, 
-     function(error, outcome) {
-		// console.log('issue sending push');
-		// console.log('error: ', error);
-		// console.log('outcome: ',outcome);
-     	
-     	data = {
-			title: error || 'error is undefined',
-			text: outcome || 'outcome is undefined',
-			objectId: req.body.object.object_id || null,
-			activityId: req.body.object.id || null
-		};
-
-        hubService.send(tags, data, 
-	     function(error, outcome) {
-	         console.log('issue sending push');
-	         console.log('error: ', error);
-	         console.log('outcome: ',outcome);
-	     });
-
-     });  
-
-	/*hubService.apns.send(tags, '{"aps":{"alert" : "Hello from Mobile Services!"}}', function(err) {
+	hubService.gcm.send(tags, {data: data}, function(err) {
 
 		if (err) {
 			winston.error("An error occured while pushing to GCM");
@@ -228,7 +203,7 @@ module.exports.pushNotification = function(req, res) {
 		winston.info("Pushed notification to GCM");
 	});*/
 
-	/*hubService.send(tags, data, function(err) {
+	hubService.send(tags, data, function(err) {
 
 		if (err) {
 			winston.error("An error occured while pushing to Template");
@@ -236,7 +211,7 @@ module.exports.pushNotification = function(req, res) {
 		}
 
 		winston.info("Pushed notification to Template");
-	});*/
+	});
 
 	res.send({result: true, status: "pushing"});
 };
