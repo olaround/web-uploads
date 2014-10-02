@@ -194,7 +194,16 @@ module.exports.pushNotification = function(req, res) {
 		winston.info("Pushed notification to MPNS");
 	});*/
 
-	hubService.apns.send(tags, '{"aps":{"alert" : "Hello from Mobile Services!"}}', function(err) {
+	
+	var payload = '{ "message" : "Template push to everyone!"}';
+    hubService.send(null, payload, 
+     function(error, outcome) {
+         console.log('issue sending push');
+         console.log('error: ', error);
+         console.log('outcome: ',outcome);
+     });  
+
+	/*hubService.apns.send(tags, '{"aps":{"alert" : "Hello from Mobile Services!"}}', function(err) {
 
 		if (err) {
 			winston.error("An error occured while pushing to GCM");
@@ -202,7 +211,7 @@ module.exports.pushNotification = function(req, res) {
 		}
 
 		winston.info("Pushed notification to GCM");
-	});
+	});*/
 
 	/*hubService.send(tags, data, function(err) {
 
