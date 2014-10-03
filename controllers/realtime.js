@@ -203,7 +203,7 @@ module.exports.pushNotification = function(req, res) {
 		winston.info("Pushed notification to GCM");
 	});*/
 
-	hubService.send(tags, data, function(err) {
+	/*hubService.send(tags, data, function(err) {
 
 		if (err) {
 			winston.error("An error occured while pushing to Template");
@@ -211,7 +211,21 @@ module.exports.pushNotification = function(req, res) {
 		}
 
 		winston.info("Pushed notification to Template");
-	});
+	});*/
+
+
+	// APNS notification
+	hubService.apns.send(
+	    null,
+	    {
+	        alert: 'This is my toast message for iOS!',
+	        expiry: ''
+	    },
+	    function (error) {
+	        if (!error) {
+	            // message sent successfully
+	        }
+	    });
 
 	res.send({result: true, status: "pushing"});
 };
