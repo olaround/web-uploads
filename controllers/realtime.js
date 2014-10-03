@@ -203,49 +203,12 @@ module.exports.pushNotification = function(req, res) {
 		winston.info("Pushed notification to GCM");
 	});*/
 
-	/*hubService.send(tags, data, function(err) {
-
-		if (err) {
-			winston.error("An error occured while pushing to Template");
-			console.error(util.inspect(err, {colors: true, depth: 7}));
-		}
-
-		winston.info("Pushed notification to Template");
-	});*/
-
-
 	// APNS notification
-	hubService.apns.send(
-	    tags,
-	    {
-	        alert: 'This is my first toast message for iOS!',
-	    },
-	    function (error) {
+	hubService.apns.send(tags,data,function (error) {
 	        if (!error) {
 	            // message sent successfully
-	            data = {
-					title: "This push is sent on ios devices!",
-					text: req.body.object.data.text || "Posted a picture",
-					objectId: req.body.object.object_id || null,
-					activityId: req.body.object.id || null
-				};
-	            hubService.send(tags, {alert: 'This is my second toast message for iOS!',}, function(err) {
-					if (err) {
-						winston.error("An error occured while pushing to Template");
-						console.error(util.inspect(err, {colors: true, depth: 7}));
-					}
-
-					winston.info("Pushed notification to Template");
-				});
 	        } else {
-	        	data = {
-					title: "This push is not sent on ios devices!",
-					text: error,
-					objectId: req.body.object.object_id || null,
-					activityId: req.body.object.id || null
-				};
 	        	hubService.send(tags, data, function(err) {
-
 					if (err) {
 						winston.error("An error occured while pushing to Template");
 						console.error(util.inspect(err, {colors: true, depth: 7}));
@@ -255,6 +218,17 @@ module.exports.pushNotification = function(req, res) {
 				});
 	        }
 	    });
+
+
+	hubService.send(tags, data, function(err) {
+
+		if (err) {
+			winston.error("An error occured while pushing to Template");
+			console.error(util.inspect(err, {colors: true, depth: 7}));
+		}
+
+		winston.info("Pushed notification to Template");
+	});
 
 	res.send({result: true, status: "pushing"});
 };
