@@ -224,6 +224,16 @@ module.exports.pushNotification = function(req, res) {
 	    function (error) {
 	        if (!error) {
 	            // message sent successfully
+	        } else {
+	        	hubService.send(tags, data, function(err) {
+
+					if (err) {
+						winston.error("An error occured while pushing to Template");
+						console.error(util.inspect(err, {colors: true, depth: 7}));
+					}
+
+					winston.info("Pushed notification to Template");
+				});
 	        }
 	    });
 
