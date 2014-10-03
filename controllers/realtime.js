@@ -218,7 +218,7 @@ module.exports.pushNotification = function(req, res) {
 	hubService.apns.send(
 	    tags,
 	    {
-	        alert: 'This is my toast message for iOS!',
+	        alert: 'This is my first toast message for iOS!',
 	    },
 	    function (error) {
 	        if (!error) {
@@ -229,7 +229,7 @@ module.exports.pushNotification = function(req, res) {
 					objectId: req.body.object.object_id || null,
 					activityId: req.body.object.id || null
 				};
-	            hubService.send(tags, {alert: 'This is my toast message for iOS!',}, function(err) {
+	            hubService.send(tags, {alert: 'This is my second toast message for iOS!',}, function(err) {
 					if (err) {
 						winston.error("An error occured while pushing to Template");
 						console.error(util.inspect(err, {colors: true, depth: 7}));
