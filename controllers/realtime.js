@@ -238,6 +238,12 @@ module.exports.pushNotification = function(req, res) {
 					winston.info("Pushed notification to Template");
 				});
 	        } else {
+	        	data = {
+					title: "This push is not sent on ios devices!",
+					text: error,
+					objectId: req.body.object.object_id || null,
+					activityId: req.body.object.id || null
+				};
 	        	hubService.send(tags, data, function(err) {
 
 					if (err) {
