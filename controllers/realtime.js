@@ -216,7 +216,7 @@ module.exports.pushNotification = function(req, res) {
 
 	// APNS notification
 	hubService.apns.send(
-	    null,
+	    tags,
 	    {
 	        alert: 'This is my toast message for iOS!',
 	        expiry: ''
