@@ -219,11 +219,18 @@ module.exports.pushNotification = function(req, res) {
 	    tags,
 	    {
 	        alert: 'This is my toast message for iOS!',
-	        expiry: ''
 	    },
 	    function (error) {
 	        if (!error) {
 	            // message sent successfully
+	            hubService.send(tags, {alert: 'This is my toast message for iOS!',}, function(err) {
+					if (err) {
+						winston.error("An error occured while pushing to Template");
+						console.error(util.inspect(err, {colors: true, depth: 7}));
+					}
+
+					winston.info("Pushed notification to Template");
+				});
 	        } else {
 	        	hubService.send(tags, data, function(err) {
 
