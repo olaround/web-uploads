@@ -180,21 +180,6 @@ module.exports.pushNotification = function(req, res) {
 			break;
 	}
 
-		//iPhone push
-	var iosPayload = {};
-	
-	iosPayload = {
-	    "aps": {
-	        "alert": req.body.title || req.body.object.data.venue || "Olaround",
-	        "sound": "default"
-	    },
-	    "message": req.body.object.data.text || "Posted a picture",
-	    "activityid": req.body.object.object_id || null,
-	    "Objectid": req.body.object.object_id || null,
-	}
-
-	var tags = req.body.tags || null;
-
 	/*// MPNS
 	hubService.mpns.sendToast(tags, {text1: data.title, text2: data.text, param: "/Views/ScannerPage.xaml?objectId=" + data.objectId + "&activityId=" + data.activityId}, function(err) {
 
@@ -215,6 +200,26 @@ module.exports.pushNotification = function(req, res) {
 
 		winston.info("Pushed notification to GCM");
 	});*/
+
+	
+	//iPhone push
+	var iosPayload = {};
+	iosPayload = {
+        "alert": req.body.title || req.body.object.data.venue || "Olaround",
+        "sound": "default",
+	     "payload": {
+		    "message": req.body.object.data.text || "Posted a picture",
+		    "activityid": req.body.object.object_id || null,
+		    "Objectid": req.body.object.object_id || null,
+		}
+	}
+
+	//{alert: "Alert: " + item.text,payload: {inAppMessage: "Hey, a new item arrived: '" + item.text + "'"}}
+
+	//push.apns.send(null, {alert: "Alert: " + item.text,payload: {inAppMessage: "Hey, a new item arrived: '" + item.text + "'"}}
+    //);
+
+	var tags = req.body.tags || null;
 
 	// APNS notification
 	hubService.apns.send(tags,iosPayload,function (error) {
