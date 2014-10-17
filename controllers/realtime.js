@@ -205,7 +205,7 @@ module.exports.pushNotification = function(req, res) {
 	//iPhone push
 	var iosPayload = {};
 	iosPayload = {
-        "alert": req.body.title || req.body.object.data.venue || "Olaround",
+        "alert": req.body.object.data.text || "Posted a picture",
         "sound": "default",
 	     "payload": {
 		    "message": req.body.object.data.text || "Posted a picture",
@@ -215,7 +215,6 @@ module.exports.pushNotification = function(req, res) {
 	}
 
 	//{alert: "Alert: " + item.text,payload: {inAppMessage: "Hey, a new item arrived: '" + item.text + "'"}}
-
 	//push.apns.send(null, {alert: "Alert: " + item.text,payload: {inAppMessage: "Hey, a new item arrived: '" + item.text + "'"}}
     //);
 
