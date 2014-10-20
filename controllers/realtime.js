@@ -207,8 +207,8 @@ module.exports.pushNotification = function(req, res) {
 	iosPayload = {
         "alert": req.body.object.data.text || "Posted a picture",
         "sound": "default",
+		"content-available": 1,
 	     "payload": {
-		    "content-available": '1',
 		    "message": req.body.object.data.text || "Posted a picture",
 		    "activityid": req.body.object.object_id || null,
 		    "Objectid": req.body.object.object_id || null,
