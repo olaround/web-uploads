@@ -208,7 +208,7 @@ module.exports.pushNotification = function(req, res) {
         "alert": req.body.object.data.text || "Posted a picture",
         "sound": "default",
 		"content-available": 1,
-		"badge": 1,
+		"badge": parseInt("1"),
 	     "payload": {
 		    "message": req.body.object.data.text || "Posted a picture",
 		    "activityid": req.body.object.object_id || null,
